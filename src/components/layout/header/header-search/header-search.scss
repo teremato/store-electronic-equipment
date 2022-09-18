@@ -33,7 +33,7 @@
     &_btn {
         cursor: pointer;
 
-        padding: 7px 9px;
+        padding: 5.5px 9px;
 
         text-align: center;
 
@@ -41,8 +41,8 @@
         color: white;
 
         border: none {
-            top-right-radius: 10px;
-            bottom-right-radius: 10px;
+            top-left-radius: 10px;
+            bottom-left-radius: 10px;
         }
 
         transition: all .3s;
