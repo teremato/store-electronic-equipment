@@ -1,12 +1,14 @@
 import { createApp } from 'vue'
 import App from './app.vue'
-import BootstrapIcon from '@dvuckovic/vue3-bootstrap-icons';
+
+import appComponents from './components';
 
 
 const app = createApp(App);
 
 
-app.component('BootstrapIcon', BootstrapIcon);
-
+appComponents.forEach((el) => {
+    app.component(el.name, el.component)
+})
 
 app.mount('#app')
