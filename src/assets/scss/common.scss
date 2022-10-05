@@ -1,11 +1,56 @@
-/* Sizes */
+/*
+    Sizes:
+*/
 
 $default_app_container: 1040px;
 
-/* Colors */
+$font_size_xs: 14px;
+$font_size_m: 16px;
+$font_size_l: 19px;
 
-/* Query */
+/* 
+    Colors:
+*/
+
+$main_blue: rgb(025, 202, 255);
+$main_red: rgb(255, 025, 090);
+$main_green: rgb(007, 239, 131);
+
+$white: #ffff;
+$black: #000;
+
+/*
+    Query:
+*/
 
 $pc_size: 900px;
 $table_size: 768px;
 $mobile_size: 567px;
+
+/*
+    Other
+*/
+
+
+/*
+    Mixins:
+*/
+
+@mixin flex-default {
+    display: flex;
+    align-items: center;
+}
+
+@mixin btn-input {
+
+    background: none;
+    border: none;
+
+    outline: none;
+}
+
+@mixin box-shadow-default {
+    -webkit-box-shadow: 0px 0px 19px 0px rgba(31, 79, 116, 0.2);
+    -moz-box-shadow: 0px 0px 19px 0px rgba(31, 79, 116, 0.2);
+    box-shadow: 0px 0px 19px 0px rgba(31, 79, 116, 0.2);
+}
