@@ -1,6 +1,6 @@
 /* Layouts */
-import appHeaderComponent from '@/components/app-header.vue'
-import appFooter from '@/components/app-footer.vue'
+import appHeaderComponent from '@components/app-header.vue'
+import appFooterComponent from '@components/app-footer.vue'
 
 /* Utils */
 import BootstrapIcon from '@dvuckovic/vue3-bootstrap-icons';
@@ -14,7 +14,7 @@ export default [
     },
     {
         name: 'app-footer',
-        component: appFooter
+        component: appFooterComponent
     },
     /* Utils */
     {

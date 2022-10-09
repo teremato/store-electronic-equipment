@@ -8,7 +8,7 @@
 
 <script>
 
-import homeScreen from '@/views/home/home-screen.vue'
+import homeScreen from '@views/home/home-screen.vue'
 
 export default {
     components: { homeScreen }

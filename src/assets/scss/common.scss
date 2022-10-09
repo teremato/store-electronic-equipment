@@ -49,6 +49,28 @@ $mobile_size: 567px;
     outline: none;
 }
 
+@mixin default-btn($width, $height) {
+
+    @include btn-input;
+
+    cursor: pointer;
+
+    padding: $height $width;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: $font_size_m;
+
+    background-color: $black;
+    color: $white;
+
+    transition: all .2s ease;
+
+    &:hover { color: $main_red; }
+}
+
 @mixin box-shadow-default {
     -webkit-box-shadow: 0px 0px 19px 0px rgba(31, 79, 116, 0.2);
     -moz-box-shadow: 0px 0px 19px 0px rgba(31, 79, 116, 0.2);

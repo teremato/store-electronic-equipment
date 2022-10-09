@@ -1,4 +1,15 @@
+/*
+    Roboto Font
+*/
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+/*
+    Swiper styles
+*/
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+
 
 * {
     margin: 0px;
@@ -11,4 +22,3 @@
 
 a { text-decoration: none; color: inherit; }
 
-h1, h2, h3, h4, h5, h6 {  }

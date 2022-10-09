@@ -31,6 +31,14 @@
 <script>
 
 export default {
+    props: {
+        name: {
+            type: String,
+            default: () => {
+                return 'app-header'
+            }
+        }
+    },
     data() {
         return {
             form: {
