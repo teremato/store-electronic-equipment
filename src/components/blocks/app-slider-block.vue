@@ -3,10 +3,7 @@
 
         <div class="slider__block">
             <div class="slider__block-info">
-                <button class="slider__block-btn">
-                    Показать
-                    <icon icon="arrow-right-circle"/>
-                </button>
+
             </div>
             <img class="slider__block-img" :src="slide.img" alt>
         </div>
@@ -57,22 +54,6 @@ export default {
 
             padding-top: 10px;
             padding-bottom: 10px;
-
-            .slider__block-btn {
-                @include default-btn(30px, 10px);
-                @include flex_default;
-
-                gap: 5px;
-                margin-bottom: 30px;
-
-                border: 2px solid $white;
-
-                .bi { margin: 0px; }
-
-                &:hover {
-                    border-color: $main_red;
-                }
-            }
         }
     }
 </style>
