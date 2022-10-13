@@ -19,11 +19,12 @@ export default {
     name: 'app-slider',
     data() {
         return {
-            settings: {}
+            settings: {},
+            swiper: {}
         }
     },
     mounted() {
-        new Swiper(this.$el, this.settings = {
+        this.swiper = new Swiper(this.$el, this.settings = {
             speed: 700,
             slidesPerView: 1,
             loop: true,
@@ -45,8 +46,11 @@ export default {
                 type: 'bullets',
                 clickable: true,
                 bulletClass: 'swiper-pagination-app-bullet',
-                bulletActiveClass: 'swiper-pagination-app-bullet-activve'
+                bulletActiveClass: 'swiper-pagination-app-bullet-active'
             }
+        })
+        this.swiper.on('slideChange', () => {
+            this.$emit('getIndex', this.swiper.realIndex)
         })
     }
 }
@@ -60,23 +64,23 @@ export default {
 
         .swiper-button-next,
         .swiper-button-prev {
-            
+
             height: 100%;
             top: 0;
-            right: 0px;
+            right: 0;
 
-            margin: 0px 10px;
+            margin: 0 10px;
 
             font-size: $font_size_m;
             color: $white;
 
             transition: margin .2s ease;
 
-            &::after { 
-                font-size: $font_size_l; 
+            &::after {
+                font-size: $font_size_l;
                 padding: 20px 30px;
 
-                border-radius: 15px 0px 0px 15px;
+                border-radius: 15px 0 0 15px;
 
                 background-color: $black;
 
@@ -87,22 +91,21 @@ export default {
             }
             &:hover {
 
-                margin: 0px 25px;
+                margin: 0 25px;
                 color: $main_red;
-                
+
                 &::after {
                     opacity: 100%;
 
                     padding: 20px 40px;
-                    
                 }
             }
         }
         .swiper-button-prev {
-            left: 0px;
+            left: 0;
 
             &::after {
-                border-radius: 0px 15px 15px 0px;
+                border-radius: 0 15px 15px 0;
             }
         }
 
@@ -117,7 +120,7 @@ export default {
 
         display: inline-block;
 
-        margin: 0px 10px;
+        margin: 0 10px;
         width: 8px;
         height: 8px;
 
@@ -125,7 +128,7 @@ export default {
 
         background-color: $white;
 
-        &.swiper-pagination-app-bullet-activve {
+        &.swiper-pagination-app-bullet-active {
             opacity: 100%;
             background-color: $main_red;
         }
