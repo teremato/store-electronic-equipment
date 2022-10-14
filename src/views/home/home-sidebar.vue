@@ -88,7 +88,7 @@ export default {
 
                 li {
                     cursor: pointer;
-
+                    font-size: 14px;
                     margin-left: 26.4px;
 
                     transition: all .2s ease;
