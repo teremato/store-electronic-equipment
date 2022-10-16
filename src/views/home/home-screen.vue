@@ -23,7 +23,12 @@
             </div>
         </div>
         <div class="home-page_main-content">
-          <home-sidebar/>
+            <home-sidebar/>
+            <home-content
+                @getFilter="getFilterType"
+                :current-filter="filterType"
+                :data="shopItem"
+            />
         </div>
 
     </div>
@@ -35,6 +40,7 @@
 import appSlider from '@components/swiper/app-slider.vue'
 import appSliderBlock from '@components/blocks/app-slider-block.vue'
 import homeSidebar from "@views/home/home-sidebar";
+import HomeContent from "@views/home/home-content";
 
 export default {
     name: 'home-page',
@@ -79,21 +85,77 @@ export default {
                     price: 1499
                 }
             ],
+            shopItem: [
+                {
+                    main_photo: 'https://9to5google.com/wp-content/uploads/sites/4/2021/02/terraria_game.jpg?resize=1024   ',
+                    price: 100,
+                    discount: 0
+                },
+                {
+                    main_photo: 'https://pic.rutubelist.ru/video/23/01/23013871c3a40071092685aa0d43d034.jpg',
+                    price: 133,
+                    discount: 0
+                },
+                {
+                    main_photo: 'https://i.playground.ru/p/eCuZaO_P8yIumEfza3V_tQ.jpeg',
+                    price: 1999,
+                    discount: 0
+                },
+                {
+                    main_photo: 'https://i.playground.ru/e/2v9TGshHqew4EbRegevX0g.jpeg',
+                    price: 999,
+                    discount: 0
+                },
+                {
+                    main_photo: 'https://galaxyit.org/wp-content/uploads/2022/01/cnlbipfliph4zommbffh0g1.jpeg',
+                    price: 1399,
+                    discount: 0
+                },
+                {
+                    main_photo: 'https://vgtimes.ru/uploads/gallery/main/149582/red-dead-redemption-2-art.jpg',
+                    price: 60,
+                    discount: 0
+                },
+                {
+                    main_photo: 'https://images8.alphacoders.com/120/1202121.jpg',
+                    price: 2499,
+                    discount: 0
+                },
+                {
+                    main_photo: 'https://gamingbolt.com/wp-content/uploads/2019/06/star-wars-jedi-fallen-order-image.jpg',
+                    price: 3999,
+                    discount: 0
+                },
+                {
+                    main_photo: 'https://picfiles.alphacoders.com/417/417221.jpg',
+                    price: 799,
+                    discount: 0
+                },
+            ],
             currentSlide: 0,
-            slidePriceVisibility: false
+            slidePriceVisibility: false,
+            filterType: 'fil_all'
         }
     },
     methods: {
         getCurrentSlide(event) {
             this.currentSlide = event;
         },
-        priceVision() { this.slidePriceVisibility = true; },
-        hidePrice() { this.slidePriceVisibility = false; }
+        priceVision() {
+            this.slidePriceVisibility = true;
+        },
+        hidePrice() {
+            this.slidePriceVisibility = false;
+        },
+        getFilterType(type) {
+            this.filterType = type;
+        }
     },
     components: {
         appSlider,
         appSliderBlock,
-        homeSidebar
+        homeSidebar,
+        HomeContent
     },
 }
 

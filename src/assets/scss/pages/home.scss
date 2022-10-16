@@ -4,9 +4,8 @@
 
 .home-page {
     width: $default_app_container;
-    height: 1000px;
 
-    margin: 0 auto;
+    margin: 0 auto $mg_20;
 
     &_main-slider {
 
@@ -76,5 +75,6 @@
 
     &_main-content {
         display: flex;
+        justify-content: space-between;
     }
 }

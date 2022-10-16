@@ -1,5 +1,5 @@
 <template>
-    <div class="home__page-side-bar">
+    <aside class="home__page-side-bar">
         <div class="home__page-side-bar-category">
             <div class="title">
                 <icon icon="grid-fill"/>
@@ -22,7 +22,7 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </aside>
 </template>
 
 <script>
@@ -57,11 +57,11 @@ export default {
 <style lang="scss">
 
     .home__page-side-bar {
-        @include box-size(100%, 25%);
+        @include box-size(auto, 25%);
         @include box-shadow-default;
 
         padding: $pd_20 $pd-10 30px $pd-10;
-        margin-right: $mg-30;
+        margin-right: $mg_20;
 
         color: $white;
         background-color: $black;
