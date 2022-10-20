@@ -73,8 +73,13 @@
         }
     }
 
-    &_main-content {
+    &_main-part {
         display: flex;
         justify-content: space-between;
+
+        &-content {
+            @include box-size(100%, 75%);
+        }
+
     }
 }

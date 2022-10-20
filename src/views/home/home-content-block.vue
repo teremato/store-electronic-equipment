@@ -25,7 +25,7 @@
 import AppShopItemBlock from "@components/blocks/app-shop-item-block";
 
 export default  {
-    name: "home-content",
+    name: "home-content-block",
     props: {
         data: {
             type: Array,
@@ -46,9 +46,6 @@ export default  {
             ],
         }
     },
-    mounted() {
-        this.activeFilter(this.currentFilter);
-    },
     methods: {
         getFilter(type) {
             this.$emit('getFilter', type)
@@ -62,7 +59,9 @@ export default  {
             }
         }
     },
-    components: { AppShopItemBlock },
+    components: {
+        AppShopItemBlock
+    }
 }
 
 </script>
@@ -70,7 +69,7 @@ export default  {
 <style lang="scss" scoped>
     .home__page-content {
 
-        @include box-size(auto, 75%);
+        @include box-size(auto, 100%);
 
         &-nav {
             @include list-style(row, 15px);
@@ -93,7 +92,7 @@ export default  {
         &-content {
             display: flex;
             flex-wrap: wrap;
-            row-gap: 7px;
+            row-gap: 8px;
             justify-content: space-between;
         }
     }

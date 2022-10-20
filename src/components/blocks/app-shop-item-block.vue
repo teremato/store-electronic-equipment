@@ -1,7 +1,7 @@
 <template>
     <section class="shop__item"
-        @mouseover="focus"
-        @mouseout="blur"
+        @mouseover="handleCursor"
+        @mouseout="handleCursor"
     >
 
         <div class="shop__item-blur" :class="{'focus': isFocus}">
@@ -35,13 +35,9 @@ export default {
         }
     },
     methods: {
-        focus() {
-            this.isFocus = true;
+        handleCursor() {
+            this.isFocus = !this.isFocus;
         },
-        blur() {
-            this.isFocus = false;
-        }
-
     }
 }
 

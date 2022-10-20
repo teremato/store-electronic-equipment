@@ -8,9 +8,9 @@
 
             <div class="header-controller">
                 <form @click.prevent="''" :class="{ 'active': form.focus }">
-                    <input 
-                        @focus="focus" 
-                        @blur="blur"
+                    <input
+                        @focus="handleCursor"
+                        @blur="handleCursor"
                         placeholder="Поиск..."
                     >
                     <button>
@@ -47,8 +47,7 @@ export default {
         }
     },
     methods: {
-        focus() { this.form.focus = true; },
-        blur() { this.form.focus = false }
+        handleCursor() { this.form.focus = !this.form.focus; },
     }
 }
 
@@ -80,7 +79,7 @@ export default {
 
     .bi {
         font-size: 25px;
-        margin: 0px;
+        margin: 0;
     }
 
     .header-controller {
@@ -108,7 +107,7 @@ export default {
                 transition: all .3s;
 
                 &:focus { border-color: $main_red; }
-                
+
                 &::placeholder {
                     opacity: 60%;
                 }

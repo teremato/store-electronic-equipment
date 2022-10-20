@@ -2,9 +2,6 @@
     <div class="swiper-slide">
 
         <div class="slider__block">
-            <div class="slider__block-info">
-
-            </div>
             <img class="slider__block-img" :src="slide.img" alt>
         </div>
 
@@ -30,30 +27,11 @@ export default {
 <style lang="scss" scoped>
     .slider__block {
 
+        @include box-size(450px, 100%);
         position: relative;
 
-        width: 100%;
-        height: 450px;
-
         &-img {
-            width: 100%;
-            height: 100%;
-        }
-
-        &-info {
-            position: absolute;
-
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: 0 auto;
-            
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            padding-top: 10px;
-            padding-bottom: 10px;
+            @include box-size(100%, 100%);
         }
     }
 </style>

@@ -27,13 +27,12 @@ export default {
 
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
     footer {
         position: relative;
         bottom: 0;
 
-        width: 100%;
-        height: 100px;
+        @include box-size(100px, 100%);
 
         background-color: $black;
         color: $white;
@@ -60,7 +59,7 @@ export default {
             font-size: $font_size_xs;
             color: inherit;
 
-            .bi { 
+            .bi {
                 font-size: 25px;
                 margin-right: 10px;
             }
@@ -71,6 +70,6 @@ export default {
                 &:hover { color: $main_red; }
             }
         }
-        
+
     }
 </style>

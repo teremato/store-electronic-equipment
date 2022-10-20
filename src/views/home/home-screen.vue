@@ -3,16 +3,20 @@
     <div class="home-page">
 
         <div class="home-page_main-slider">
+
             <app-slider @getIndex="getCurrentSlide" class="home-page-swiper">
                 <app-slider-block v-for="slide in slides" :key="slide.img"
                     :slide="slide"
                 />
             </app-slider>
+
             <div class="home-page_slider-side">
+
                 <div class="home-page_slider-side-info">
                     <h5>{{ slides[currentSlide].title }}</h5>
                     <p>{{ slides[currentSlide].text }}</p>
                 </div>
+
                 <button class="home-page_slider-slide-btn"
                     @mouseover="priceVision"
                     @mouseout="hidePrice"
@@ -20,15 +24,22 @@
                     {{ (slidePriceVisibility) ? slides[currentSlide].price + "Р" : "Перейти" }}
                     <icon icon="arrow-right"/>
                 </button>
+
             </div>
         </div>
-        <div class="home-page_main-content">
+
+        <div class="home-page_main-part">
             <home-sidebar/>
-            <home-content
-                @getFilter="getFilterType"
-                :current-filter="filterType"
-                :data="shopItem"
-            />
+            <div class="home-page_main-part-content">
+                <home-content-block
+                    @getFilter="getFilterType"
+                    :current-filter="filterType"
+                    :data="shopItem"
+                />
+                <home-recommend-block
+                    :news="slides"
+                />
+            </div>
         </div>
 
     </div>
@@ -39,8 +50,10 @@
 
 import appSlider from '@components/swiper/app-slider.vue'
 import appSliderBlock from '@components/blocks/app-slider-block.vue'
+
 import homeSidebar from "@views/home/home-sidebar";
-import HomeContent from "@views/home/home-content";
+import HomeContentBlock from "@views/home/home-content-block";
+import homeRecommendBlock from "@views/home/home-recommend-block";
 
 export default {
     name: 'home-page',
@@ -132,6 +145,9 @@ export default {
                     discount: 0
                 },
             ],
+            recommended: [
+                {}
+            ],
             currentSlide: 0,
             slidePriceVisibility: false,
             filterType: 'fil_all'
@@ -155,7 +171,8 @@ export default {
         appSlider,
         appSliderBlock,
         homeSidebar,
-        HomeContent
+        HomeContentBlock,
+        homeRecommendBlock
     },
 }
 
