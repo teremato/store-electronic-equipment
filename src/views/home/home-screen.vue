@@ -3,42 +3,25 @@
     <div class="home-page">
 
         <div class="home-page_main-slider">
-
-            <app-slider @getIndex="getCurrentSlide" class="home-page-swiper">
-                <app-slider-block v-for="slide in slides" :key="slide.img"
-                    :slide="slide"
-                />
-            </app-slider>
-
-            <div class="home-page_slider-side">
-
-                <div class="home-page_slider-side-info">
-                    <h5>{{ slides[currentSlide].title }}</h5>
-                    <p>{{ slides[currentSlide].text }}</p>
-                </div>
-
-                <button class="home-page_slider-slide-btn"
-                    @mouseover="priceVision"
-                    @mouseout="hidePrice"
-                >
-                    {{ (slidePriceVisibility) ? slides[currentSlide].price + "Р" : "Перейти" }}
-                    <icon icon="arrow-right"/>
-                </button>
-
-            </div>
+            <app-home-slider :slides="slides"/>
         </div>
 
         <div class="home-page_main-part">
+
             <home-sidebar/>
+
             <div class="home-page_main-part-content">
+
                 <home-content-block
                     @getFilter="getFilterType"
                     :current-filter="filterType"
                     :data="shopItem"
                 />
+
                 <home-recommend-block
                     :news="slides"
                 />
+
             </div>
         </div>
 
@@ -48,8 +31,7 @@
 
 <script>
 
-import appSlider from '@components/swiper/app-slider.vue'
-import appSliderBlock from '@components/blocks/app-slider-block.vue'
+import appHomeSlider from '@components/swiper/app-home-slider.vue'
 
 import homeSidebar from "@views/home/home-sidebar";
 import HomeContentBlock from "@views/home/home-content-block";
@@ -157,19 +139,12 @@ export default {
         getCurrentSlide(event) {
             this.currentSlide = event;
         },
-        priceVision() {
-            this.slidePriceVisibility = true;
-        },
-        hidePrice() {
-            this.slidePriceVisibility = false;
-        },
         getFilterType(type) {
             this.filterType = type;
         }
     },
     components: {
-        appSlider,
-        appSliderBlock,
+        appHomeSlider,
         homeSidebar,
         HomeContentBlock,
         homeRecommendBlock

@@ -14,7 +14,7 @@ $font_size_l: 19px;
 
 $main_blue: rgb(025, 202, 255);
 $main_red: rgb(255, 025, 090);
-$main_green: rgb(007, 239, 131);
+$main_green: rgb(0, 225, 113);
 
 $white: #ffff;
 $black: #000;
@@ -134,4 +134,68 @@ $pd_60: 60px;
     -webkit-box-shadow: 0 0 19px 0 rgba(31, 79, 116, 0.2);
     -moz-box-shadow: 0 0 19px 0 rgba(31, 79, 116, 0.2);
     box-shadow: 0 0 19px 0 rgba(31, 79, 116, 0.25);
+}
+
+@mixin icon($font_size) {
+    .bi {
+        margin-bottom: 0;
+        font-size: $font_size;
+    }
+}
+
+@mixin recommend-item($height, $width, $f_s, $flex-def: true) {
+    h3 {
+        @include box-size($height, $width);
+        margin: $mg_10 $mg_10 0 $mg_10;
+
+        text-transform: uppercase;
+        font-size: $f_s;
+
+        color: $main_red;
+    }
+
+    p {
+        @include box-size($height, $width);
+        margin: $mg_10 $mg_10 $mg_10 $mg_10;
+    }
+
+    .home__recommendation-block-info {
+
+        @if $flex-def {
+            @include flex-default;
+        }
+        @else {
+            @include flex-vertical;
+            justify-content: space-around;
+        }
+
+    }
+}
+
+@mixin home-slider-arrow($left: true,) {
+    @include btn-input;
+    cursor: pointer;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    font-size: 30px;
+    padding: 0 $pd_10;
+
+    @if $left { left: 0; }
+    @else { right: 0 }
+
+    z-index: 2;
+    transition: $transition;
+
+    color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+
+    &:hover {
+        padding: 0 15px;
+
+        color: $main_red;
+        background-color: rgba(0, 0, 0, 1);
+    }
 }

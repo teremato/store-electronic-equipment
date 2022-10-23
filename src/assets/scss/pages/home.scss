@@ -15,62 +15,6 @@
 
         margin: $mg_20 0 $mg_20 0;
 
-        .home-page-swiper {
-            @include box-size(100%, 75%);
-        }
-        .home-page_slider-side {
-            @include box-size(450px, 25%);
-            @include flex-vertical;
-            justify-content: space-between;
-
-            padding: $pd_20 $pd_10;
-            background-color: $black;
-
-            &-info {
-                color: $white;
-
-                h5 {
-                    cursor: pointer;
-                    position: relative;
-                    margin-bottom: $mg_20;
-
-                    font-size: $font_size_l;
-                    text-transform: uppercase;
-
-                    transition: all .2s ease;
-
-                    &:hover { color: $main_red; }
-
-                    &::after {
-                        content: '';
-                        @include box-size(1px, 100%);
-                        @include absolute-box(0, none, 0, -$mg_10);
-
-                        background-color: $white;
-                    }
-
-                }
-                p {
-                    font-size: $font_size_xs;
-                }
-            }
-
-            button {
-                @include default-btn(20px, 10px);
-                @include flex-default;
-                gap: 5px;
-
-                border: 2px solid $white;
-                transition: all .2s ease;
-
-                .bi { margin: 0; }
-
-                &:hover {
-                    gap: 10px;
-                    border-color: $main_red;
-                }
-            }
-        }
     }
 
     &_main-part {

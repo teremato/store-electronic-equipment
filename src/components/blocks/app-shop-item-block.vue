@@ -5,9 +5,12 @@
     >
 
         <div class="shop__item-blur" :class="{'focus': isFocus}">
-            <button>
+            <button class="shop__item-to-page">
                 {{ item.price + "₽" }}
                 <icon icon="arrow-right"/>
+            </button>
+            <button class="shop__item-to-cart">
+                <icon icon="cart"/>
             </button>
         </div>
 
@@ -52,35 +55,13 @@ export default {
         cursor: pointer;
         background-color: $black;
 
-        &-img {
-            img {
-                @include box-size(100%, 100%);
-            }
-        }
-
-        &-price-info {
-            position: absolute;
-            bottom: 0;
-
-            padding: $pd_5 $pd_10;
-            margin: $mg_5;
-
-            color: $white;
-            background-color: $black;
-
-            transition: all .2s ease;
-
-            &:hover {
-                color: $main_red;
-            }
-
-        }
         .focus {
             opacity: 100%;
             pointer-events: all;
 
-            transition: all .2s ease;
+            transition: all .4s ease;
         }
+
         &-blur {
             @include box-size(100%, 100%);
             @include flex-default;
@@ -92,25 +73,39 @@ export default {
             pointer-events: none;
 
             background-color: rgba(0, 0, 0, 1);
+        }
+    }
 
-            button {
-                @include default-btn(20px, 10px);
-                gap: 5px;
+    .shop__item-img {
+        img {
+            @include box-size(100%, 100%);
+        }
+    }
 
-                font-size: $font_size_m;
-                font-weight: 500;
+    button {
+        @include default-btn(10px, 10px);
+        gap: 5px;
 
-                .bi {
-                    font-size: 25px;
+        font-size: $font_size_m;
+        font-weight: 500;
 
-                    color: inherit;
-                    margin-bottom: 0;
-                }
+        .bi {
+            font-size: 25px;
+            margin-bottom: 0;
+        }
 
-                &:hover {
-                    gap: 15px;
-                }
+        &:hover {
+            font-size: $font_size_l;
+            gap: 15px;
+
+            .bi {
+                font-size: 35px;
             }
         }
     }
+
+    .shop__item-to-cart {
+        &:hover { color: $main_green; }
+    }
+
 </style>

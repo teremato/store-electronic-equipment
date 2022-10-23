@@ -10,7 +10,20 @@
                  class="home__recommendation-block-item"
                  :class="`item-${index}`"
             >
-<!--                <h3>{{ item.title }}</h3>-->
+                <div class="home__recommendation-block-info">
+
+                    <div class="block-info">
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.text }}</p>
+                    </div>
+
+                    <button class="">
+                        Перейти
+                        <icon icon="arrow-right"/>
+                    </button>
+
+                </div>
+
                 <img :src="item.img" :alt="item.title">
             </article>
 
@@ -42,9 +55,10 @@ export default {
 <style lang="scss" scoped>
 
     .home__recommendation-title {
-        margin-top: $mg_20;
 
+        margin-top: $mg_20;
         font-weight: 500;
+
     }
 
     .home__recommendation-block {
@@ -63,6 +77,31 @@ export default {
 
     }
 
+    .home__recommendation-block-info {
+
+        @include box-size(0%, 100%);
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        overflow: hidden;
+
+        transition: all .5s;
+
+        color: $white;
+        background-color: rgba(0, 0, 0, 0.9);
+
+        button {
+            @include default-btn(20px, 10px);
+            gap: 10px;
+
+            background-color: transparent;
+        }
+    }
+
+    @include icon(25px);
+
     .home__recommendation-block-item {
 
         cursor: pointer;
@@ -70,30 +109,33 @@ export default {
 
         img { @include box-size(100%, 100%); }
 
-        &::before {
-            content: '';
-            @include box-size(100%, 100%);
-            position: absolute;
-
-            opacity: 0;
-            transition: $transition;
-        }
-
         &:hover {
-            &::before {
-                content: '';
+            .home__recommendation-block-info {
                 @include box-size(100%, 100%);
-                position: absolute;
-
-                opacity: 90%;
-                background-color: $black;
             }
         }
     }
 
-    .item-0 { grid-area: banner_1; }
-    .item-1 { grid-area: banner_2; }
-    .item-2 { grid-area: banner_3; }
-    .item-3 { grid-area: banner_4; }
+    .item-0 {
+        grid-area: banner_1;
+        @include recommend-item(auto, 50%, 25px, $flex-def: true);
+    }
+
+    .item-1 {
+        grid-area: banner_2;
+        @include recommend-item(auto, 90%, auto, $flex-def: true);
+    }
+
+    .item-2 {
+        grid-area: banner_3;
+        @include recommend-item(auto, 90%, auto, $flex-def: true);
+    }
+
+    .item-3 {
+        grid-area: banner_4;
+
+        @include recommend-item(auto, 80%, 25px, $flex-def: false);
+        justify-content: space-around;
+    }
 
 </style>
