@@ -60,15 +60,15 @@ export default {
         @include box-size(auto, 25%);
         @include box-shadow-default;
 
-        padding: $pd_20 $pd-10 30px $pd-10;
-        margin-right: $mg_20;
+        padding: $sp_20 $sp-10 30px $sp-10;
+        margin-right: $sp_20;
 
         color: $white;
         background-color: $black;
 
         &-category,
         &-genres {
-            margin-left: $mg-20;
+            margin-left: $sp-20;
             .title {
                 @include flex-default;
                 gap: 10px;
@@ -78,7 +78,7 @@ export default {
                     color: $main-red;
                 }
 
-                padding: $pd-10 $pd-10 $pd-10 0;
+                padding: $sp-10 $sp-10 $sp-10 0;
             }
             ul {
                 @include flex-vertical;

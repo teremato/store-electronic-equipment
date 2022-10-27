@@ -1,0 +1,56 @@
+@mixin recommend-item($height, $width, $f_s, $flex-def: true) {
+    h3 {
+        @include box-size($height, $width);
+        margin: $sp_10 $sp_10 0 $sp_10;
+
+        text-transform: uppercase;
+        font-size: $f_s;
+
+        color: $main_red;
+    }
+
+    p {
+        @include box-size($height, $width);
+        margin: $sp_10 $sp_10 $sp_10 $sp_10;
+    }
+
+    .home__recommendation-block-info {
+
+        @if $flex-def {
+            @include flex-default;
+        }
+        @else {
+            @include flex-vertical;
+            justify-content: space-around;
+        }
+
+    }
+}
+
+@mixin home-slider-arrow($left: true,) {
+    @include btn-input;
+    cursor: pointer;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    font-size: 30px;
+    padding: 0 $sp_10;
+
+    @if $left { left: 0; }
+    @else { right: 0 }
+
+    z-index: 2;
+    transition: $transition;
+
+    color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+
+    &:hover {
+        padding: 0 15px;
+
+        color: $main_red;
+        background-color: rgba(0, 0, 0, 1);
+    }
+}

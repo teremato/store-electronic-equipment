@@ -56,7 +56,7 @@ export default {
 
     .home__recommendation-title {
 
-        margin-top: $mg_20;
+        margin-top: $sp_20;
         font-weight: 500;
 
     }
@@ -73,7 +73,7 @@ export default {
         grid-template-columns: 60% 40%;
 
 
-        margin-top: $mg_20;
+        margin-top: $sp_20;
 
     }
 

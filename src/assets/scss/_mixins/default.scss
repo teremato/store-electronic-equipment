@@ -1,0 +1,78 @@
+/* Effects */
+
+@mixin box-shadow-default {
+    -webkit-box-shadow: 0 0 19px 0 rgba(31, 79, 116, 0.2);
+    -moz-box-shadow: 0 0 19px 0 rgba(31, 79, 116, 0.2);
+    box-shadow: 0 0 19px 0 rgba(31, 79, 116, 0.25);
+}
+
+/* Boxes */
+
+@mixin box-size($height, $width) {
+    width: $width;
+    height: $height;
+}
+
+@mixin relative-box($left, $top, $right, $bottom) {
+    position: relative;
+
+}
+
+@mixin absolute-box($left, $top, $right, $bottom) {
+    position: absolute;
+
+}
+
+@mixin flex-default {
+    display: flex;
+    align-items: center;
+}
+@mixin flex-vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+/* UI */
+
+@mixin btn-input {
+    background: none;
+    border: none;
+    outline: none;
+}
+
+@mixin default-btn($width, $height) {
+
+    @include btn-input;
+
+    cursor: pointer;
+
+    padding: $height $width;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: $font_size_m;
+
+    background-color: $black;
+    color: $white;
+
+    transition: $transition;
+
+    &:hover { color: $main_red; }
+}
+
+@mixin list-style($direction, $gap) {
+    display: flex;
+    flex-direction: $direction;
+    gap: $gap;
+
+    list-style: none;
+}
+
+@mixin icon($font_size) {
+    .bi {
+        margin-bottom: 0;
+        font-size: $font_size;
+    }
+}

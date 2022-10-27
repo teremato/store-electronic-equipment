@@ -5,7 +5,7 @@
 .home-page {
     width: $default_app_container;
 
-    margin: 0 auto $mg_20;
+    margin: 0 auto $sp_20;
 
     &_main-slider {
 
@@ -13,7 +13,7 @@
         @include flex-default;
         @include box-shadow-default;
 
-        margin: $mg_20 0 $mg_20 0;
+        margin: $sp_20 0 $sp_20 0;
 
     }
 

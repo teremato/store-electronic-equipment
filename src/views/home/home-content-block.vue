@@ -75,7 +75,7 @@ export default  {
             @include list-style(row, 15px);
             cursor: pointer;
 
-            margin-bottom: $mg_20;
+            margin-bottom: $sp_20;
 
             li {
                 @include box-size(30px, auto);

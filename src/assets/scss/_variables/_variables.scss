@@ -1,0 +1,36 @@
+/* Container sizes */
+
+$default_app_container: 1040px;
+
+/* Colors */
+
+$main_blue: rgb(025, 202, 255);
+$main_red: rgb(255, 025, 090);
+$main_green: rgb(0, 225, 113);
+
+$white: #ffff;
+$black: #000;
+
+/* Font sizes */
+
+$font_size_xs: 14px;
+$font_size_m: 16px;
+$font_size_l: 19px;
+
+/* Query */
+
+$pc_size: 900px;
+$table_size: 768px;
+$mobile_size: 567px;
+
+/* Spacing */
+
+$sp_5: 5px;
+$sp_10: 10px;
+$sp_20: 20px;
+$sp_30: 30px;
+$sp_60: 60px;
+
+/* Other */
+
+$transition: all .2s ease;

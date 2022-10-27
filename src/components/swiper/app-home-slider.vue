@@ -133,7 +133,7 @@ export default {
         @include flex-vertical;
         justify-content: space-between;
 
-        padding: $pd_20 $pd_10;
+        padding: $sp_20 $sp_10;
         background-color: $black;
 
         &-info {
@@ -142,7 +142,7 @@ export default {
             h5 {
                 cursor: pointer;
                 position: relative;
-                margin-bottom: $mg_20;
+                margin-bottom: $sp_20;
 
                 font-size: $font_size_l;
                 text-transform: uppercase;
@@ -154,7 +154,10 @@ export default {
                 &::after {
                     content: '';
                     @include box-size(1px, 100%);
-                    @include absolute-box(0, none, 0, -$mg_10);
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: -$sp_10;
 
                     background-color: $white;
                 }
@@ -169,7 +172,7 @@ export default {
             gap: 5px;
 
             border: 2px solid $white;
-            transition: all .2s ease;
+            transition: $transition;
 
             @include icon(auto);
 

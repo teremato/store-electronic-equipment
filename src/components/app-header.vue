@@ -1,16 +1,14 @@
 <template>
-    <header class="header">
+    <header class="header" ref="header">
         <div class="container">
 
-            <h1 class="header-logo">
-                LOGO
-            </h1>
+            <h1 class="header-logo">LOGO</h1>
 
             <div class="header-controller">
-                <form @click.prevent="''" :class="{ 'active': form.focus }">
+                <form @click.prevent="''" :class="{ 'active': focus }">
                     <input
-                        @focus="handleCursor"
-                        @blur="handleCursor"
+                        @focus="handleFocus"
+                        @blur="handleFocus"
                         placeholder="Поиск..."
                     >
                     <button>
@@ -26,28 +24,45 @@
             </div>
         </div>
     </header>
+
+    <app-scroll
+        :target="$refs.header"
+        :vision="!scrollArrow"
+    />
+
 </template>
 
 <script>
+import AppScroll from "@components/use/app-scroll";
 
 export default {
-    props: {
-        name: {
-            type: String,
-            default: () => {
-                return 'app-header'
-            }
-        }
-    },
+    components: { AppScroll },
     data() {
         return {
-            form: {
-                focus: false
-            }
+            focus: false,
+            scrollArrow: false
         }
     },
+    mounted() {
+
+        const callback = (entries) => {
+            this.scrollArrow = (!entries[0].isIntersecting)
+        }
+
+        const observer = new IntersectionObserver(callback, {
+            rootMargin: '0px',
+            threshold: 1.0
+        })
+
+        observer.observe(this.$refs.header)
+    },
     methods: {
-        handleCursor() { this.form.focus = !this.form.focus; },
+        handleFocus() {
+            this.focus = !this.focus;
+        },
+        scrollVision(event) {
+            this.scrollArrow = event
+        }
     }
 }
 
@@ -58,8 +73,8 @@ export default {
 .header {
 
     width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: $sp_10;
+    padding-bottom: $sp_10;
 
     color: $white;
     background-color: $black;
@@ -91,7 +106,7 @@ export default {
             @include flex-default;
             gap: 5px;
 
-            padding: 2px 10px;
+            padding: 2px $sp_10;
             color: $white;
 
             input {
@@ -101,7 +116,7 @@ export default {
                 font-size: $font_size_m;
                 color: $white;
 
-                padding-bottom: 5px;
+                padding-bottom: $sp_5;
                 border-bottom: 2px solid $white;
 
                 transition: all .3s;
@@ -121,7 +136,7 @@ export default {
 
             color: $white;
 
-            transition: all .2s;
+            transition: $transition;
 
             &:hover { color: $main_red }
         }
