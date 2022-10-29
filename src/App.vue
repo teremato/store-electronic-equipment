@@ -1,17 +1,15 @@
 <template>
     <div class="layout">
         <app-header ref="app-header" />
-        <home-screen />
+        <router-view/>
         <app-footer />
     </div>
 
 </template>
 
 <script>
-import homeScreen from '@views/home/home-screen.vue'
-
 export default {
-    components: { homeScreen },
+    name: 'app'
 }
 </script>
 
@@ -21,5 +19,7 @@ export default {
     .layout {
         position: relative;
         min-height: 100vh;
+
+        padding-bottom: 100px;
     }
 </style>

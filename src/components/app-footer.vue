@@ -29,7 +29,7 @@ export default {
 
 <style lang="scss" scoped>
     footer {
-        position: relative;
+        position: absolute;
         bottom: 0;
 
         @include box-size(100px, 100%);
