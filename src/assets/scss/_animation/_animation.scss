@@ -1,0 +1,12 @@
+@mixin modal-create($topAfter, $topBefore) {
+    @keyframes modal-create {
+        from {
+            opacity: 0;
+            top: $topBefore;
+        }
+        to {
+            opacity: 100%;
+            top: $topAfter;
+        }
+    }
+}

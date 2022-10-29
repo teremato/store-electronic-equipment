@@ -5,21 +5,33 @@
             <h1 class="header-logo">LOGO</h1>
 
             <div class="header-controller">
-                <form @click.prevent="''" :class="{ 'active': focus }">
-                    <input
-                        @focus="handleFocus"
-                        @blur="handleFocus"
+                <form
+                    class="header-controller-form"
+                    :class="{ 'active': focus }"
+                >
+                    <input @focus="handleFocus"
                         placeholder="Поиск..."
                     >
                     <button>
                         <icon icon="search"/>
                     </button>
+
+                    <app-search-dropdown
+                        :trigger="focus"
+                        @modal:close="handleBlur" />
+
                 </form>
 
-                <div class="controler-buttons">
-                    <button class="user_profile">
+                <div class="controller-buttons">
+                    <button @click="() => this.$refs.userOption.open()"
+                        class="user_profile"
+                    >
                         <icon icon="person-circle"/>
                     </button>
+
+                    <app-dropdown-modal ref="userOption"
+                        :items="noAuthOption" />
+
                 </div>
             </div>
         </div>
@@ -34,13 +46,20 @@
 
 <script>
 import AppScroll from "@components/use/app-scroll";
+import AppDropdownModal from "@components/modals/app-dropdown-modal";
+import AppSearchDropdown from "@components/modals/app-search-dropdown";
 
 export default {
-    components: { AppScroll },
     data() {
         return {
             focus: false,
-            scrollArrow: false
+            scrollArrow: false,
+            noAuthOption: [
+                { name: "Войти", icon: "box-arrow-in-right" },
+                { name: "Зарегистрироваться", icon: "person-plus" }
+            ],
+            authOption: []
+
         }
     },
     mounted() {
@@ -58,12 +77,17 @@ export default {
     },
     methods: {
         handleFocus() {
-            this.focus = !this.focus;
+            this.focus = true;
         },
-        scrollVision(event) {
-            this.scrollArrow = event
+        handleBlur(event) {
+            this.focus = event
         }
-    }
+    },
+    components: {
+        AppSearchDropdown,
+        AppDropdownModal,
+        AppScroll
+    },
 }
 
 </script>
@@ -112,7 +136,7 @@ export default {
             input {
                 @include btn-input;
 
-                width: 100%;
+                width: 250px;
                 font-size: $font_size_m;
                 color: $white;
 
@@ -130,15 +154,17 @@ export default {
             .bi { font-size: 20px; }
         }
 
+        .controller-buttons { position: relative; }
+
         button {
             @include btn-input;
             cursor: pointer;
 
             color: $white;
-
             transition: $transition;
 
             &:hover { color: $main_red }
+            &:focus { color: $main_red }
         }
     }
 }

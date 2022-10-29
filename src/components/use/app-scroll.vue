@@ -47,6 +47,9 @@ export default {
 
         &:hover { color: $main_red }
 
-        &.scroll-arrow-hide { opacity: 0; }
+        &.scroll-arrow-hide {
+            cursor: default;
+            opacity: 0;
+        }
     }
 </style>
