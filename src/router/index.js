@@ -10,6 +10,11 @@ const routes = [
         path: '/:pathMatch(.*)*',
         name: 'Ошибка',
         component: () => import('@views/errors/app-error')
+    },
+    {
+        path: '/games/:id',
+        name: 'Страница товара',
+        component: () => import('@views/shop-item/shop-item-screen')
     }
 ]
 
