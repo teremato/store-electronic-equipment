@@ -14,7 +14,7 @@
                 <div class="swiper-slide">
 
                     <div class="slider__block">
-                        <img class="slider__block-img" :src="item.img" alt>
+                        <img class="slider__block-img" :src="item.main_photo" alt>
                     </div>
 
                 </div>
@@ -39,7 +39,7 @@
 
         <div class="home__slider-side-info">
             <h5>{{ slides[currentSlide].title }}</h5>
-            <p>{{ slides[currentSlide].text }}</p>
+            <p>{{ slides[currentSlide].description }}</p>
         </div>
 
         <button class="home__slider-side-btn"

@@ -5,7 +5,9 @@
     >
 
         <div class="shop__item-blur" :class="{'focus': isFocus}">
-            <button class="shop__item-to-page">
+            <button @click="goToItemPage"
+                class="shop__item-to-page" >
+
                 {{ item.price + "₽" }}
                 <icon icon="arrow-right"/>
             </button>
@@ -41,6 +43,9 @@ export default {
         handleCursor() {
             this.isFocus = !this.isFocus;
         },
+        goToItemPage() {
+            this.$router.push('/games/' + this.item.slug)
+        }
     }
 }
 

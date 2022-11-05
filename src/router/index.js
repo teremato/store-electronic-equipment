@@ -12,7 +12,7 @@ const routes = [
         component: () => import('@views/errors/app-error')
     },
     {
-        path: '/games/:id',
+        path: '/games/:slug',
         name: 'Страница товара',
         component: () => import('@views/shop-item/shop-item-screen')
     }

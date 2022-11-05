@@ -6,7 +6,7 @@
 
         <div class="home__recommendation-block">
 
-            <article v-for="(item, index) in getNewArray" :key="index"
+            <article v-for="(item, index) in reccomend" :key="index"
                  class="home__recommendation-block-item"
                  :class="`item-${index}`"
             >
@@ -14,7 +14,7 @@
 
                     <div class="block-info">
                         <h3>{{ item.title }}</h3>
-                        <p>{{ item.text }}</p>
+                        <p>{{ item.description }}</p>
                     </div>
 
                     <button class="">
@@ -24,7 +24,7 @@
 
                 </div>
 
-                <img :src="item.img" :alt="item.title">
+                <img :src="item.main_photo" :alt="item.title">
             </article>
 
         </div>
@@ -38,15 +38,13 @@
 export default {
     name: "home-recommend-block",
     props: {
-        news: {
+        reccomend: {
             type: Array,
             default: () => []
         }
     },
     computed: {
-        getNewArray() {
-            return this.news.slice(0, 4)
-        }
+
     }
 }
 

@@ -1,4 +1,10 @@
 .shop-item-page {
     width: $default_app_container;
     margin: $sp_20 auto $sp_20;
+
+    &-content {
+        @include box-size(auto, 100%);
+
+        display: flex;
+    }
 }

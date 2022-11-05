@@ -1,20 +1,20 @@
 <template>
     <div class="shop-item-top">
-        <img :src="game.img" alt>
+        <img :src="game.main_photo" alt>
 
         <div class="shop-item-top-right">
+
             <div class="shop-item-top-info">
                 <h3>{{ game.title }}</h3>
-                <p>{{ game.text }}</p>
+                <p>{{ game.description }}</p>
             </div>
+
             <div class="shop-item-top-controller">
                 <button>
                     {{ "Купить за" + ` ${game.price}Р` }}
                 </button>
-                <button class="favorite_btn">
-                    <icon icon="bookmark-fill"/>
-                </button>
             </div>
+
         </div>
 
     </div>
@@ -68,8 +68,8 @@ export default {
         }
 
         &-controller {
-            @include flex-default;
-            justify-content: space-between;
+            display: flex;
+            justify-content: end;
 
             button {
                 @include default-btn(15px, 10px);
@@ -83,11 +83,6 @@ export default {
                     gap: 15px;
                     border-color: $main_red;
                 }
-            }
-
-            .favorite_btn {
-                padding: 0;
-                border: none;
             }
         }
 

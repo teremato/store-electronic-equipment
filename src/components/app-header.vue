@@ -2,16 +2,17 @@
     <header class="header" ref="header">
         <div class="container">
 
-            <h1 class="header-logo">LOGO</h1>
+            <router-link to="/">
+                <h1 class="header-logo">VUESHOP</h1>
+            </router-link>
 
             <div class="header-controller">
-                <form
-                    class="header-controller-form"
-                    :class="{ 'active': focus }"
-                >
+                <form class="header-controller-form"
+                    :class="{ 'active': focus }" >
+
                     <input @focus="handleFocus"
-                        placeholder="Поиск..."
-                    >
+                        placeholder="Поиск..." />
+
                     <button>
                         <icon icon="search"/>
                     </button>
@@ -165,6 +166,13 @@ export default {
 
             &:hover { color: $main_red }
             &:focus { color: $main_red }
+        }
+    }
+    .header-logo {
+        transition: $transition;
+
+        &:hover {
+            color: $main_red;
         }
     }
 }

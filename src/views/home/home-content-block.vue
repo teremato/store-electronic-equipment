@@ -10,10 +10,12 @@
             </li>
         </ul>
 
-        <div class="home__page-content-content">
+        <div class="home__page-content-content" :class="{'active-block': changeFilter}">
+
             <template v-for="(item, index) in data" :key="index">
                 <app-shop-item-block :item="item"/>
             </template>
+
         </div>
 
     </div>
@@ -22,7 +24,7 @@
 
 <script>
 
-import AppShopItemBlock from "@components/blocks/app-shop-item-block";
+import AppShopItemBlock from "@components/blocks/app-shop-item-block.vue";
 
 export default  {
     name: "home-content-block",
@@ -33,29 +35,39 @@ export default  {
         },
         currentFilter: {
             type: String,
-            default: 'fil_all'
+            default: 'created_at'
         }
     },
     data() {
         return {
             filterType: [
-                { name: 'Каталог', value: 'fil_all' },
-                { name: 'Новинки', value: 'fil_new' },
-                { name: 'Лидеры продаж', value: 'fil_top' },
-                { name: 'Ожидаемые', value: 'fil_soon' },
+                { name: 'Каталог', value: 'created_at' },
+                { name: 'Новинки', value: 'release_date' },
+                { name: 'Лидеры продаж', value: 'price' },
+                { name: 'Ожидаемые', value: 'title' },
             ],
+            changeFilter: false
         }
     },
     methods: {
         getFilter(type) {
             this.$emit('getFilter', type)
-            console.log(type)
         },
     },
     computed: {
         activeFilter() {
             return function(type) {
                 return (type === this.currentFilter);
+            }
+        }
+    },
+    watch: {
+        currentFilter: {
+            handler() {
+                this.changeFilter = true,
+                setTimeout(() => {
+                    this.changeFilter = false
+                }, 800)
             }
         }
     },
@@ -67,6 +79,7 @@ export default  {
 </script>
 
 <style lang="scss" scoped>
+
     .home__page-content {
 
         @include box-size(auto, 100%);
@@ -96,4 +109,15 @@ export default  {
             justify-content: space-between;
         }
     }
+
+    .active-block {
+        animation: changeFilter .8s forwards;
+    }
+
+    @keyframes changeFilter {
+        from { opacity: 100%; }
+        50% { opacity: 0; }
+        to { opacity: 100%; }
+    }
+
 </style>

@@ -4,7 +4,7 @@ const path = require("path")
 module.exports = defineConfig({
 
   transpileDependencies: true,
-  
+
   css: {
     loaderOptions: {
       sass: {
@@ -17,7 +17,10 @@ module.exports = defineConfig({
       alias: {
         "@components": path.join(__dirname, 'src/components/'),
         "@app-sass": path.join(__dirname, 'src/assets/scss/'),
-        "@views": path.join(__dirname, 'src/views/')
+        "@app-images": path.join(__dirname, 'src/assets/images'),
+        "@views": path.join(__dirname, 'src/views/'),
+        "@store": path.join(__dirname, 'src/store'),
+        "@services": path.join(__dirname, 'src/services')
       },
       extensions: ['.js', '.vue', '.json']
     }

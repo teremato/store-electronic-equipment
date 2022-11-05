@@ -10,7 +10,10 @@
       ],
       "@components/*": ["src/components/*"],
       "@app-sass/*": ["src/assets/scss/*"],
-      "@views/*": ["src/views/*"]
+      "@app-images/*": ["src/assets/images"],
+      "@views/*": ["src/views/*"],
+      "@store/*": ["src/store/*"],
+      "@services/*": ["src/services/*"]
     },
     "lib": [
       "esnext",
