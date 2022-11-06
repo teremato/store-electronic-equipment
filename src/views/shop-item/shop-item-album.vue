@@ -1,6 +1,8 @@
 <template>
     <div class="shop-item-album-wrapper">
+
         <h3 class="title">Фотографии</h3>
+        
         <div class="shop-item-album">
     
             <template v-for="(item, index) in images" :key="index">
@@ -27,9 +29,7 @@ export default {
 
 <style lang="scss" scoped>
 
-    .shop-item-album-wrapper {
-        @include box-size(100%, 53%);
-    }
+    .shop-item-album-wrapper { @include box-size(100%, 53%); }
     .shop-item-album {
         @include box-size(100%, 100%);
         
@@ -41,15 +41,15 @@ export default {
             cursor: pointer;
             @include box-size(150px, 250px);
 
-            img {
-                @include box-size(100%, 100%);
-            }
+            img { @include box-size(100%, 100%); }
         }
     }
     .title {
         @include box-size(100%, 100%);
 
-        text-align: center;
+        font-size: $font_size_m;
+        font-weight: 500;
+
         margin-bottom: $sp_20;
     }
 </style>

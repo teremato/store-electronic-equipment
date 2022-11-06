@@ -1,15 +1,26 @@
 <template>
     <div v-if="trigger"
-         class="app__search-dropdown"
-         :class="{'active': trigger}"
-    >
-        <ul class="app__search-dropdown-list"
-            :class="{'no-search': !noSearch}"
-        >
-            <li v-if="items.length" class="app__search-dropdown-list-item">
-            </li>
+        class="app__search-dropdown"
+        :class="{'active': trigger}" >
 
-            <li>
+        <ul class="app__search-dropdown-list"
+            :class="{'no-search': !noSearch}" >
+
+            <template v-if="items.length > 0 && searchQuery !== ''" >
+                <li v-for="(item, index) in items" :key="index"
+                    class="app__search-dropdown-list-item" >
+                    
+                    <app-search-item :item="item"/>
+                    <!-- <router-link :to="`/games/${item.slug}`"
+                        class="search-item" >
+
+                        <h4>{{ item.title }}</h4>
+                        <div>{{ item.price + 'Р.' }}</div>
+                    </router-link> -->
+                </li>
+            </template>
+
+            <li v-else>
                 ничего не найдено :(
             </li>
         </ul>
@@ -17,12 +28,19 @@
 </template>
 
 <script>
+
+import appSearchItem from '../use/app-search-item.vue'
+
 export default {
     name: "app-search-dropdown",
     props: {
         items: {
             type: Array,
             default: () => []
+        },
+        searchQuery: {
+            type: String,
+            default: ''
         },
         trigger: {
             type: Boolean,
@@ -42,6 +60,9 @@ export default {
         noSearch() {
             return (this.items.length > 0)
         }
+    },
+    components: {
+        appSearchItem
     }
 }
 </script>
@@ -56,12 +77,26 @@ export default {
         top: 50px;
 
         z-index: 999;
+        overflow-y: scroll;
 
         color: $black;
         background-color: $white;
 
+        /* SCROLL BAR */
+
+        &::-webkit-scrollbar {
+            width: $sp_10;
+        }
+        &::-webkit-scrollbar-track {
+            background: $white
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: $black;
+            border: 3px solid $white;
+        }
+
         &-list {
-            @include box-size(300px, 250px);
+            @include box-size(330px, 250px);
             list-style: none;
 
             padding: $sp_15;
@@ -76,4 +111,6 @@ export default {
     .active {
         animation: modal-create .5s forwards;
     }
+
+
 </style>

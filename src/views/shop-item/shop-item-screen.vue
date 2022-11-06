@@ -21,13 +21,14 @@ export default {
         return {
             item: {},
             photos: [],
-            load: false
+            load: false,
+            slug: this.$route.params.slug
         }
     },
     mounted() {
 
         const slug = this.$route.params.slug;
-
+        
         Promise.all([
             this.getGameItem(slug),
             this.getGameItemAlbum(slug)
@@ -61,6 +62,8 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
-    @import "@app-sass/pages/shop-item.scss";
+<style src="@app-sass/pages/shop-item.scss"
+    lang="scss"
+    scoped >
+    
 </style>

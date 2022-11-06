@@ -1,10 +1,10 @@
 <template>
+    
     <div class="layout">
         <app-header ref="app-header" />
-        <router-view/>
+        <router-view  :key="$route"/>
         <app-footer />
     </div>
-
 </template>
 
 <script>
@@ -21,5 +21,6 @@ export default {
         min-height: 100vh;
 
         padding-bottom: 100px;
+        transition: $transition;
     }
 </style>

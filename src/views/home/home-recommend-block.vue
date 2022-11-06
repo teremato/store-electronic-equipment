@@ -104,6 +104,7 @@ export default {
 
         cursor: pointer;
         position: relative;
+        overflow: hidden;
 
         img { @include box-size(100%, 100%); }
 

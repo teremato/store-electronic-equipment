@@ -10,14 +10,17 @@
                 <form class="header-controller-form"
                     :class="{ 'active': focus }" >
 
-                    <input @focus="handleFocus"
-                        placeholder="Поиск..." />
+                    <input v-model="searchQueary"
+                        placeholder="Поиск..." 
+                        @focus="handleFocus" />
 
                     <button>
                         <icon icon="search"/>
                     </button>
 
                     <app-search-dropdown
+                        :items="games"
+                        :searchQuery="searchQueary"
                         :trigger="focus"
                         @modal:close="handleBlur" />
 
@@ -25,8 +28,8 @@
 
                 <div class="controller-buttons">
                     <button @click="() => this.$refs.userOption.open()"
-                        class="user_profile"
-                    >
+                        class="user_profile" >
+                        
                         <icon icon="person-circle"/>
                     </button>
 
@@ -46,20 +49,25 @@
 </template>
 
 <script>
-import AppScroll from "@components/use/app-scroll";
-import AppDropdownModal from "@components/modals/app-dropdown-modal";
-import AppSearchDropdown from "@components/modals/app-search-dropdown";
+
+import AppScroll from "@components/use/app-scroll.vue";
+import AppDropdownModal from "@components/modals/app-dropdown-modal.vue";
+import AppSearchDropdown from "@components/modals/app-search-dropdown.vue";
 
 export default {
     data() {
         return {
             focus: false,
             scrollArrow: false,
+            searchQueary: '',
+
             noAuthOption: [
                 { name: "Войти", icon: "box-arrow-in-right" },
                 { name: "Зарегистрироваться", icon: "person-plus" }
             ],
-            authOption: []
+            authOption: [],
+
+            games: []
 
         }
     },
@@ -82,6 +90,24 @@ export default {
         },
         handleBlur(event) {
             this.focus = event
+        },
+        async search(query) {
+            this.focus = false
+            
+            this.$store.dispatch('searchGame', { query: query })
+                .then((data) => {
+
+                    this.games = (query) ? data : []
+                })
+                .catch((error) => console.log(error))
+                .finally(() => this.focus = true)
+        }
+    },
+    watch: {
+        searchQueary: {
+            handler() {
+                this.search(this.searchQueary)
+            }
         }
     },
     components: {

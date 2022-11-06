@@ -1,15 +1,16 @@
 <template>
     <div class="shop-item-content">
 
-        <div class="shop-item-content-top">
+        <ul class="shop-item-content-top">
 
-            <h3 v-for="(item, index) in categories" :key="index"
+            <li v-for="(item, index) in categories" :key="index"
                 @click="changeBlock(item.value)"
-                class="shop-item-content-top-item" >
+                class="shop-item-content-top-item"
+                :class="{'active': item.value === currentBlock}" >
     
                 {{ item.name }}
-            </h3>
-        </div>
+            </li>
+        </ul>
 
         <component :is="getCurrentBlock(currentBlock)" />
     </div>
@@ -41,6 +42,7 @@ export default {
     computed: {
         getCurrentBlock() {
             return (currentBlock) => {
+                
                 let title = currentBlock;
 
                 switch(title) {
@@ -69,18 +71,19 @@ export default {
         @include box-size(100%, 50%);
 
         &-top {
-            @include flex-default;
-            gap: $sp_15;
+            @include list-style(row, 15px);
+            font-weight: 500;
 
-            padding-bottom: $sp_20;
-            margin-bottom: $sp_20;
-            border-bottom: 2px solid $black;
-
-            &-item {
-                cursor: pointer;
-            }
-            
+            &-item { cursor: pointer; }
         }
+    }
+    .active {
+        border-bottom: 2px solid $main_red;
+
+        padding-bottom: $sp_10;
+        margin-bottom: $sp_10;
+        
+        color: $main_red;
     }
 
 </style>

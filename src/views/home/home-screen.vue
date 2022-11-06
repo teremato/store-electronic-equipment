@@ -96,6 +96,8 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
-    @import "@app-sass/pages/home.scss";
+<style src="@app-sass/pages/home.scss"
+    lang="scss"
+    scoped >
+
 </style>
