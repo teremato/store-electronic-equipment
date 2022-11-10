@@ -67,14 +67,14 @@ export default {
 
         async getSlides() {
             await this.$store.dispatch('getGames', { sort: 'title', per_page: 4 })
-                .then((data) => {
+                .then(({ data }) => {
                     this.slides = data;
                 })
         },
 
         async getShopItems() {
             await this.$store.dispatch('getGames', { sort: this.filterType})
-                .then((data) => {
+                .then(({ data }) => {
                     this.shopItems = data;
                 })
         }

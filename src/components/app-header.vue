@@ -41,6 +41,8 @@
         </div>
     </header>
 
+    <app-modal-login/>
+
     <app-scroll
         :target="$refs.header"
         :vision="!scrollArrow"
@@ -53,6 +55,7 @@
 import AppScroll from "@components/use/app-scroll.vue";
 import AppDropdownModal from "@components/modals/app-dropdown-modal.vue";
 import AppSearchDropdown from "@components/modals/app-search-dropdown.vue";
+import AppModalLogin from "@components/modals/app-modal-login.vue"
 
 export default {
     data() {
@@ -113,7 +116,8 @@ export default {
     components: {
         AppSearchDropdown,
         AppDropdownModal,
-        AppScroll
+        AppScroll,
+        AppModalLogin
     },
 }
 

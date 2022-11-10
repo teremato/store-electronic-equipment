@@ -69,7 +69,7 @@ export default {
 
         &-controller {
             display: flex;
-            justify-content: end;
+            justify-content: flex-end;
 
             button {
                 @include default-btn(15px, 10px);

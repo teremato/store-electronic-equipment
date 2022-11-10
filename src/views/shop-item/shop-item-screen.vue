@@ -3,8 +3,9 @@
         <shop-item-top :game="item"/>
         <div class="shop-item-page-content">
             <shop-item-album
-                :images="photos" />
-            <shop-item-content/>
+                :images="item.photos" />
+            <shop-item-content 
+                :data="item" />
         </div>
     </div>
 </template>
@@ -20,7 +21,6 @@ export default {
     data() {
         return {
             item: {},
-            photos: [],
             load: false,
             slug: this.$route.params.slug
         }
@@ -31,7 +31,6 @@ export default {
         
         Promise.all([
             this.getGameItem(slug),
-            this.getGameItemAlbum(slug)
         ])
         .catch((error) => console.log(error))
         .finally(() => this.load = true)
@@ -40,18 +39,10 @@ export default {
         async getGameItem(slug) {
 
             await this.$store.dispatch('getGameItem', { slug: slug })
-                .then((data) => {
+                .then(({ data }) => {
                     this.item = data;
                 })
         },
-        
-        async getGameItemAlbum(slug) {
-
-            await this.$store.dispatch('getGameItemAlbum', {slug: slug})
-                .then((data) => {
-                    this.photos = data
-                })
-        }
     },
     components: {
         ShopItemContent,

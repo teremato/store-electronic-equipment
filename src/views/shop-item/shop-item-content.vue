@@ -12,7 +12,7 @@
             </li>
         </ul>
 
-        <component :is="getCurrentBlock(currentBlock)" />
+        <component :is="getCurrentBlock(currentBlock)" :items="data" />
     </div>
 </template>
 
@@ -24,6 +24,12 @@ import appItemContentReviews from '@components/blocks/app-item-content-reviews.v
 
 export default {
     name: "shop-item-content",
+    props: {
+        data: {
+            type: Object,
+            default: () => {}
+        }
+    },
     data() {
         return {
             categories: [
