@@ -1,12 +1,13 @@
 <template>
     <div v-if="trigger"
-         class="app__dropdown"
-         :class="{'active': trigger}"
-    >
+        class="app__dropdown"
+        :class="{'active': trigger}" >
+
         <ul class="app__dropdown-list">
             <li v-for="(item, index) in items" :key="index"
                 class="app__dropdown-list-item"
-            >
+                @click="handleClick(item.type)" >
+
                 <icon :icon="item.icon" />
                 {{ item.name }}
             </li>
@@ -30,11 +31,11 @@ export default {
         }
     },
     mounted() {
-        window.addEventListener('mousedown', (e) => this.close(e))
+        window.addEventListener('mousedown', (e) => this.close(e));
     },
     methods: {
         open() {
-            this.trigger = true
+            this.trigger = true;
         },
         close(e) {
             if(this.trigger) {
@@ -42,6 +43,9 @@ export default {
                     this.trigger = false;
                 }
             }
+        },
+        handleClick(event) {
+            this.$emit('click:type', event);
         }
     }
 }
@@ -51,7 +55,6 @@ export default {
 <style lang="scss" scoped>
 
     @include modal-create(50px, 60px);
-
     .app__dropdown {
         @include box-size(auto, max-content);
         @include icon(25px);

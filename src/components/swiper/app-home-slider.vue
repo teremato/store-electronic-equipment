@@ -8,10 +8,10 @@
             :autoplay="swiper.autoplay"
             :allow-touch-move="false"
             :loop="true"
-            @slideChange="getCurrentIndex"
-        >
+            @slideChange="getCurrentIndex" >
+
             <swiper-slide v-for="(item, index) in slides" :key="index">
-                <div class="swiper-slide">
+                <div class="swiper-slide" >
 
                     <div class="slider__block">
                         <img class="slider__block-img" :src="item.main_photo" alt>
@@ -23,9 +23,11 @@
             <div class="swiper-pagination"></div>
 
             <div class="swiper-navigation">
+
                 <button class="swiper-nav-prev">
                     <icon icon="arrow-left"/>
                 </button>
+
                 <button class="swiper-nav-next">
                     <icon icon="arrow-right"/>
                 </button>
@@ -44,8 +46,8 @@
 
         <button class="home__slider-side-btn"
             @mouseover="priceVision"
-            @mouseout="priceVision"
-        >
+            @mouseout="priceVision" >
+
             {{ (slidePriceVisibility) ? slides[currentSlide].price + "Р" : "Перейти" }}
             <icon icon="arrow-right"/>
         </button>
@@ -61,14 +63,12 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 
 export default {
     name: 'app-slider',
-
     props: {
       slides: {
           type: Array,
           default: () => []
       }
     },
-
     data() {
         return {
             slidePriceVisibility: false,
@@ -93,7 +93,6 @@ export default {
             }
         }
     },
-
     methods: {
         priceVision() {
             this.slidePriceVisibility = !this.slidePriceVisibility;
@@ -102,7 +101,6 @@ export default {
             this.currentSlide = swiper.realIndex;
         }
     },
-
     components: {
         Swiper, SwiperSlide
     }

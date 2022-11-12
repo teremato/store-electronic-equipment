@@ -20,7 +20,8 @@ module.exports = defineConfig({
         "@app-images": path.join(__dirname, 'src/assets/images'),
         "@views": path.join(__dirname, 'src/views/'),
         "@store": path.join(__dirname, 'src/store'),
-        "@services": path.join(__dirname, 'src/services')
+        "@services": path.join(__dirname, 'src/services'),
+        "@mixins": path.join(__dirname, 'src/mixins')
       },
       extensions: ['.js', '.vue', '.json']
     }

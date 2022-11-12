@@ -7,9 +7,9 @@
         <div class="home__recommendation-block">
 
             <article v-for="(item, index) in reccomend" :key="index"
-                 class="home__recommendation-block-item"
-                 :class="`item-${index}`"
-            >
+                class="home__recommendation-block-item"
+                :class="`item-${index}`" >
+
                 <div class="home__recommendation-block-info">
 
                     <div class="block-info">

@@ -34,28 +34,30 @@
                     </button>
 
                     <app-dropdown-modal ref="userOption"
-                        :items="noAuthOption" />
+                        :items="noAuthOption"
+                        @click:type="userSwitch" />
 
                 </div>
             </div>
         </div>
     </header>
 
-    <app-modal-login/>
+    <component :is="modal" 
+        @modal:close="() => { this.modal = '' }"
+        @modal:change="(type) => { this.modal = type }" />
 
     <app-scroll
         :target="$refs.header"
-        :vision="!scrollArrow"
-    />
+        :vision="!scrollArrow" />
 
 </template>
 
 <script>
-
 import AppScroll from "@components/use/app-scroll.vue";
 import AppDropdownModal from "@components/modals/app-dropdown-modal.vue";
 import AppSearchDropdown from "@components/modals/app-search-dropdown.vue";
 import AppModalLogin from "@components/modals/app-modal-login.vue"
+import AppModalRegister from "@components/modals/app-modal-register.vue"
 
 export default {
     data() {
@@ -63,10 +65,11 @@ export default {
             focus: false,
             scrollArrow: false,
             searchQueary: '',
+            modal: '',
 
             noAuthOption: [
-                { name: "Войти", icon: "box-arrow-in-right" },
-                { name: "Зарегистрироваться", icon: "person-plus" }
+                { name: "Войти",icon: "box-arrow-in-right", type: 'login' },
+                { name: "Зарегистрироваться", icon: "person-plus", type: 'register' }
             ],
             authOption: [],
 
@@ -104,6 +107,17 @@ export default {
                 })
                 .catch((error) => console.log(error))
                 .finally(() => this.focus = true)
+        },
+        userSwitch(type) {
+
+            switch(type) {
+                case 'login':
+                    this.modal = "app-modal-login"
+                        break;
+                case 'register':
+                    this.modal = "app-modal-register"
+                        break;
+            }
         }
     },
     watch: {
@@ -117,14 +131,14 @@ export default {
         AppSearchDropdown,
         AppDropdownModal,
         AppScroll,
-        AppModalLogin
+        AppModalLogin,
+        AppModalRegister
     },
 }
 
 </script>
 
 <style lang="scss" scoped>
-
 .header {
 
     width: 100%;

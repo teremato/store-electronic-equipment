@@ -1,32 +1,35 @@
 <template>
     <app-modal-container>
-        <form class="login-form"
+        <form class="register-form"
             :class="{ 'active': isOpen }" >
 
-            <div class="login-form-header">
-                <h2>Вход</h2>
+            <div class="register-form-header">
+                <h2>Регистрация</h2>
                 <button @click="closeModal">
                     Закрыть
                     <icon icon="x-lg"/>
                 </button>
             </div>
             <div>
+                <app-input type="name"
+                    placeholder="Придумайте имя"
+                    text="Имя" />
+
                 <app-input type="email"
-                    placeholder="Введите вашу почту"
+                    placeholder="Ваша почта"
                     text="Почта" />
-    
+
                 <app-input type="password"
-                    placeholder="Введите пароль"
+                    placeholder="Придумайте пароль"
                     text="Пароль" />
             </div>
+            <div class="register-form-actions">
+                <div class="register-form-actions-register"
+                    @click="changeModal('app-modal-login')" >
 
-            <div class="login-form-actions">
-                <div class="login-form-actions-register" 
-                    @click="changeModal('app-modal-register')" >
-                    
-                    Нет аккаунта?Зарегистрируетесь
+                    Есть аккаунт?Войдите
                 </div>
-                <button>Войти</button>
+                <button>Зарегистрироваться</button>
             </div>
         </form>
     </app-modal-container>
@@ -45,16 +48,16 @@ export default {
     components: {
         appModalContainer,
         appInput
-    },
+    }
 }
 </script>
 
 <style lang="scss" scoped>
 
     @include modal-create(0px, 60px);
-    .login-form {
+    .register-form {
         @include box-shadow-default;
-        @include box-size(400px, 500px);
+        @include box-size(450px, 500px);
         @include flex-vertical;
         justify-content: space-between;
 
@@ -91,4 +94,5 @@ export default {
         }
     }
     .active { animation: modal-create .5s forwards; }
+
 </style>

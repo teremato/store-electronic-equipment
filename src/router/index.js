@@ -15,17 +15,12 @@ const routes = [
         path: '/games/:slug',
         name: 'Страница товара',
         component: () => import('@views/shop-item/shop-item-screen')
-    }
+    },
 ]
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes
 })
-
-// router.beforeEach((to, from, next) => {
-//     document.title = to.name;
-//     next();
-// });
 
 export default router

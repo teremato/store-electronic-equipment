@@ -2,10 +2,11 @@
     <div class="home__page-content">
 
         <ul class="home__page-content-nav">
+            
             <li v-for="(item, index) in filterType" :key="index"
                 @click="getFilter(item.value)"
-                :class="{ 'active-li': activeFilter(item.value) }"
-            >
+                :class="{ 'active-li': activeFilter(item.value) }" >
+
                 {{ item.name }}
             </li>
         </ul>

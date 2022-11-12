@@ -10,13 +10,7 @@
                 <li v-for="(item, index) in items" :key="index"
                     class="app__search-dropdown-list-item" >
                     
-                    <app-search-item :item="item"/>
-                    <!-- <router-link :to="`/games/${item.slug}`"
-                        class="search-item" >
-
-                        <h4>{{ item.title }}</h4>
-                        <div>{{ item.price + 'Р.' }}</div>
-                    </router-link> -->
+                    <app-search-item :item="item" />
                 </li>
             </template>
 
