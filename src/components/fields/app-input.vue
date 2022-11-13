@@ -1,9 +1,10 @@
 <template>
     <div>
         <h4>{{ text }}</h4>
-        <input class="input"
+        <input class="input" :value="modelValue"
             @focus="handleFocus"
             @blur="handleFocus"
+            @input="updateInput"
             :class="{ 'active': isActive }"
             :type="type"
             :placeholder="placeholder" >
@@ -15,6 +16,10 @@
 
 export default {
     props: {
+        modelValue: {
+            type: [String, Number],
+            default: ''
+        },
         type: {
             type: String,
             default: ''
@@ -36,6 +41,9 @@ export default {
     methods: {
         handleFocus() {
             this.isActive = !this.isActive;
+        },
+        updateInput(event) {
+            this.$emit('update:modelValue', event.target.value)
         }
     }
 }

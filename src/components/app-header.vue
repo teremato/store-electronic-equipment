@@ -3,7 +3,9 @@
         <div class="container">
 
             <router-link to="/">
-                <h1 class="header-logo">VUESHOP</h1>
+                <h1 class="header-logo">
+                    VUESHOP
+                </h1>
             </router-link>
 
             <div class="header-controller">
@@ -34,7 +36,7 @@
                     </button>
 
                     <app-dropdown-modal ref="userOption"
-                        :items="noAuthOption"
+                        :items="(isAuth) ? authOption : noAuthOption"
                         @click:type="userSwitch" />
 
                 </div>
@@ -58,6 +60,7 @@ import AppDropdownModal from "@components/modals/app-dropdown-modal.vue";
 import AppSearchDropdown from "@components/modals/app-search-dropdown.vue";
 import AppModalLogin from "@components/modals/app-modal-login.vue"
 import AppModalRegister from "@components/modals/app-modal-register.vue"
+import { mapGetters } from 'vuex';
 
 export default {
     data() {
@@ -68,10 +71,13 @@ export default {
             modal: '',
 
             noAuthOption: [
-                { name: "Войти",icon: "box-arrow-in-right", type: 'login' },
+                { name: "Войти", icon: "box-arrow-in-right", type: 'login' },
                 { name: "Зарегистрироваться", icon: "person-plus", type: 'register' }
             ],
-            authOption: [],
+            authOption: [
+                { name: "Моя страница", icon: "person-circle", type: "user" },
+                { name: "Выйти", icon: "box-arrow-in-left", type: "logout"}
+            ],
 
             games: []
 
@@ -117,6 +123,9 @@ export default {
                 case 'register':
                     this.modal = "app-modal-register"
                         break;
+                case 'user':
+                    this.$router.push('/user/' + this.userName)
+                        break;
             }
         }
     },
@@ -126,6 +135,13 @@ export default {
                 this.search(this.searchQueary)
             }
         }
+    },
+    computed: {
+        ...mapGetters({
+            isAuth: "isAuth",
+            userName: "userName",
+            userId: "userId"
+        })
     },
     components: {
         AppSearchDropdown,

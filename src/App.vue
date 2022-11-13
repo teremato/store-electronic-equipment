@@ -1,6 +1,7 @@
 <template>
     
     <div class="layout">
+        
         <app-header ref="app-header" />
         <router-view  :key="$route"/>
         <app-footer />
@@ -9,7 +10,13 @@
 
 <script>
 export default {
-    name: 'app'
+    name: 'app',
+    async created() {
+
+        const token = localStorage.getItem('token');
+
+        await this.$store.dispatch('getUser', token)
+    }
 }
 </script>
 

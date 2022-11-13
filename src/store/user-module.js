@@ -2,14 +2,38 @@
 import { $api } from "@services/axios-rest-client";
 
 export default {
-    actions: {
-        async userLogin({ commit }, form)  {
-            return await $api.post('/login', form)
-                .then(({ data }) => { return data })
+    state: {
+        user: {}
+    },
+    getters: {
+        userId: (state) => {
+            return state.user.id
         },
-        async userRegister({ commit }, form) {
-            return $api.post('/register', form)
-                .then(({ data }) => { return data } )
+        userName: (state) => {
+            return state.user.name
+        }
+    },
+    mutations: {
+        setUser(state, payload) {
+            state.user = payload
+        }
+    },
+    actions: {
+        async getUser({ commit }, token) {
+            return await $api.get("/user/")
+                .then(({ data }) => {
+
+                    commit('setToken', token)
+                    commit('setUser', {...data})
+
+                    return data
+                })
+        },
+        async getUserById({ commit }, id) {
+            return await $api.get(`/user/` + id)
+                .then(({ data }) => {
+                    return data
+                })
         }
     }
 }

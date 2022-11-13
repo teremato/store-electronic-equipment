@@ -11,11 +11,13 @@
                 </button>
             </div>
             <div>
-                <app-input type="email"
+                <app-input v-model="form.email"
+                    type="email"
                     placeholder="Введите вашу почту"
                     text="Почта" />
     
-                <app-input type="password"
+                <app-input v-model="form.password"
+                    type="password"
                     placeholder="Введите пароль"
                     text="Пароль" />
             </div>
@@ -26,7 +28,9 @@
                     
                     Нет аккаунта?Зарегистрируетесь
                 </div>
-                <button>Войти</button>
+                <button @click.prevent="login">
+                    Войти
+                </button>
             </div>
         </form>
     </app-modal-container>
@@ -39,8 +43,26 @@ import modal from '@mixins/modal.js'
 
 export default {
     mixins: [modal],
+    data() {
+        return {
+            form: {
+                email: '',
+                password: ''
+            }
+        }
+    },
     mounted() {
         this.isOpen = true
+    },
+    methods: {
+        async login() {
+            await this.$store.dispatch('userLogin', this.form)
+                .then(({ token }) => {
+                    
+                    localStorage.setItem('token', token)
+                })
+                
+        }
     },
     components: {
         appModalContainer,

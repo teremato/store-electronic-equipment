@@ -16,6 +16,11 @@ const routes = [
         name: 'Страница товара',
         component: () => import('@views/shop-item/shop-item-screen')
     },
+    {
+        path: '/user/:name',
+        name: 'Пользователь',
+        component: () => import('@views/user/user-screen')
+    }
 ]
 
 const router = createRouter({
