@@ -126,7 +126,18 @@ export default {
                 case 'user':
                     this.$router.push('/user/' + this.userName)
                         break;
+                case 'logout':
+                    this.logout();
+                        break;
             }
+        },
+        async logout() {
+            await this.$store.dispatch("userLogout")
+                .then(() => {
+
+                    localStorage.removeItem('token')
+                    this.$router.push('/');
+                })
         }
     },
     watch: {

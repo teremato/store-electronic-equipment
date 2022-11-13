@@ -1,0 +1,10 @@
+.user__page-main {
+    width: 100%;
+
+    &-bottom {
+        display: flex;
+        gap: $sp_20;
+
+        margin-top: $sp_20;
+    }
+}

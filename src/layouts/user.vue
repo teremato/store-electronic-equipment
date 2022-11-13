@@ -1,0 +1,54 @@
+<template>
+    <div class="user__layout">
+        <aside class="user_layout-aside">
+            <template v-for="(item, index) in sideBar" :key="index">
+                <router-link :to="`/user/${item.route}`">
+                    {{ item.name }}
+                </router-link>
+            </template>
+        </aside>
+        <slot></slot>
+    </div>
+</template>
+
+<script>
+export default {
+    name: "app-user-layout",
+    data() {
+        return {
+            sideBar: [
+                { name: 'Моя страница', route: '/'},
+                { name: 'Лента', route: '/'},
+                { name: 'Мои игры', route: '/'},
+                { name: 'Сообщества', route: '/'},
+                { name: 'Настройки', route: '/' }
+            ]
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+    .user__layout {
+        display: flex;
+        width: $default_user_container;
+
+        margin: 0 auto;
+        margin-top: $sp_20;
+        margin-bottom: $sp_20;
+
+        .user_layout-aside {
+            @include flex-vertical;
+            @include box-size(auto, 20%);
+            gap: $sp_5;
+
+            a {
+                transition: $transition;
+
+                &:hover {
+                    color: $main_red;
+                }
+            }
+        }
+    }
+</style>

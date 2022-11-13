@@ -1,10 +1,17 @@
 <template>
-    <div class="user-page">
-
+    <div class="user__page-main">
+        <user-top-main :user="user" />
+        <div class="user__page-main-bottom">
+            <user-friends-main />
+            <user-list-main />
+        </div>
     </div>
 </template>
 
 <script>
+import userTopMain from "@views/user/main/user-top-main.vue"
+import userFriendsMain from '@views/user/main/user-friends-main.vue'
+import userListMain from '@views/user/main/user-list-main.vue'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -31,7 +38,9 @@ export default {
         })
     },
     components: {
-
+        userTopMain,
+        userFriendsMain,
+        userListMain
     }
 }
 </script>
