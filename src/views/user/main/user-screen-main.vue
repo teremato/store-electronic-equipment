@@ -1,18 +1,22 @@
 <template>
     <div class="user__page-main">
-        <user-top-main :user="user" />
+        <user-top-main :user="user"
+            @upload:avatar="uploadAvatar"
+            @upload:photo="uploadPhotos"
+            @change:status="changeStatus" />
+
         <div class="user__page-main-bottom">
             <user-friends-main />
             <user-list-main />
         </div>
     </div>
+
 </template>
 
 <script>
 import userTopMain from "@views/user/main/user-top-main.vue"
 import userFriendsMain from '@views/user/main/user-friends-main.vue'
 import userListMain from '@views/user/main/user-list-main.vue'
-import { mapGetters } from 'vuex'
 
 export default {
     data() {
@@ -21,26 +25,32 @@ export default {
         }
     },
     mounted() {
-        this.getUser();
+        this.getUser(this.$route.params.id);
     },
     methods: {
-        async getUser() {
-            await this.$store.dispatch("getUserById", this.userId)
+        async getUser(id) {
+
+            await this.$store.dispatch("getUserById", id)
                 .then((data) => {
                     this.user = data
                 })
+        },
+        uploadAvatar(event) {
+            this.user.avatar = event
+        },
+        uploadPhotos(event) {
+            this.user.media.push(event);
+        },
+        changeStatus(event) {
+            this.user.status = event
         }
     },
     computed: {
-        ...mapGetters({
-            userId: "userId",
-            userName: "userName"
-        })
     },
     components: {
         userTopMain,
         userFriendsMain,
-        userListMain
+        userListMain,
     }
 }
 </script>

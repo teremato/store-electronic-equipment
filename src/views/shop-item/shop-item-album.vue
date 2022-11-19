@@ -29,7 +29,7 @@ export default {
 
 <style lang="scss" scoped>
 
-    .shop-item-album-wrapper { @include box-size(100%, 53%); }
+    .shop-item-album-wrapper { @include box-size(100%, 100%); }
     .shop-item-album {
         @include box-size(100%, 100%);
         

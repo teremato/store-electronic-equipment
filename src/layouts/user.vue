@@ -3,6 +3,7 @@
         <aside class="user_layout-aside">
             <template v-for="(item, index) in sideBar" :key="index">
                 <router-link :to="`/user/${item.route}`">
+                    <!-- <icon icon=""/> -->
                     {{ item.name }}
                 </router-link>
             </template>

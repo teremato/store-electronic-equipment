@@ -60,6 +60,7 @@ import AppDropdownModal from "@components/modals/app-dropdown-modal.vue";
 import AppSearchDropdown from "@components/modals/app-search-dropdown.vue";
 import AppModalLogin from "@components/modals/app-modal-login.vue"
 import AppModalRegister from "@components/modals/app-modal-register.vue"
+
 import { mapGetters } from 'vuex';
 
 export default {
@@ -124,7 +125,7 @@ export default {
                     this.modal = "app-modal-register"
                         break;
                 case 'user':
-                    this.$router.push('/user/' + this.userName)
+                    this.$router.push('/user/' + this.userId)
                         break;
                 case 'logout':
                     this.logout();

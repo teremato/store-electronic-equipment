@@ -26,7 +26,7 @@ const routes = [
         }
     },
     {
-        path: '/user/:name',
+        path: '/user/:id',
         name: 'Пользователь',
         component: () => import('@views/user/main/user-screen-main'),
         meta: {

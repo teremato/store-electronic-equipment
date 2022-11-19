@@ -53,7 +53,6 @@ export default {
 
         &-info {
             h3 {
-                width: max-content;
 
                 font-size: 30px;
                 text-transform: uppercase;

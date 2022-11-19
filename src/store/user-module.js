@@ -24,15 +24,27 @@ export default {
                 .then(({ data }) => {
 
                     commit('setToken', token)
-                    commit('setUser', {...data})
+                    commit('setUser', data.user)
 
-                    return data
+                    return data.user
                 })
         },
         async getUserById({ commit }, id) {
             return await $api.get(`/user/` + id)
                 .then(({ data }) => {
-                    return data
+                    return data.user
+                })
+        },
+        async changeAvatar({ commit }, photo) {
+            return await $api.post("/user/avatar", photo)
+                .then(({ data }) => {
+                    return data.avatar
+                })
+        },
+        async changeStatus({ commit }, form) {
+            return await $api.post('/user/status', form)
+                .then(({ data }) => {
+                    return data.status
                 })
         }
     }

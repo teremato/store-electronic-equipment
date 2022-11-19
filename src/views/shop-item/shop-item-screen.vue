@@ -39,8 +39,8 @@ export default {
         async getGameItem(slug) {
 
             await this.$store.dispatch('getGameItem', { slug: slug })
-                .then(({ data }) => {
-                    this.item = data;
+                .then(({ game }) => {
+                    this.item = game;
                 })
         },
     },

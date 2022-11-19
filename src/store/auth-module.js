@@ -31,7 +31,7 @@ export default {
                 })
         },
         async userRegister({ commit }, form) {
-            return $api.post('/auth/register', form)
+            return $api.post('/auth/registration', form)
                 .then(({ data }) => {
 
                     commit('setUser', data.user)

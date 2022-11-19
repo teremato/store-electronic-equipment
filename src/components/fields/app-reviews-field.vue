@@ -18,6 +18,7 @@
         </textarea>
 
         <div class="text-form-buttons">
+            <slot name="upload"></slot>
             <button>
                 Отправить
             </button>

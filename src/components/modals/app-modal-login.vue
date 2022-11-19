@@ -60,6 +60,7 @@ export default {
                 .then(({ token }) => {
                     
                     localStorage.setItem('token', token)
+                    this.closeModal();
                 })
                 
         }
@@ -82,7 +83,7 @@ export default {
 
         position: relative;
 
-        padding: 15px;
+        padding: $sp_15;
         background-color: white;
 
         &-header {

@@ -65,6 +65,7 @@ export default {
                 .then(({ token }) => {
 
                     localStorage.setItem('token', token)
+                    this.closeModal();
                 })
         }
     },
