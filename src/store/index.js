@@ -4,6 +4,7 @@ import GamesModule from "@store/games-module";
 import UserModule from '@store/user-module';
 import AuthModule from '@store/auth-module';
 import MediaModule from '@store/media-module';
+import PostsModule from '@store/posts-module';
 
 
 export default createStore({
@@ -19,6 +20,7 @@ export default createStore({
         GamesModule,
         UserModule,
         AuthModule,
-        MediaModule
+        MediaModule,
+        PostsModule
     }
 })

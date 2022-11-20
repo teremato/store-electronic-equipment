@@ -5,7 +5,6 @@
         <textarea v-model="text" ref="textarea"
             @change="input"
             @focus="handleFocus"
-            @blur="handleBlur"
             :class="{ 'resize': !resize }"
             :style="{height: isFocusRows + 'px'}"
             :placeholder="placeholder"
@@ -16,10 +15,12 @@
             wrap="hard" >
             
         </textarea>
-
+        <slot v-if="focus"
+            name="photo" >
+        </slot>
         <div class="text-form-buttons">
             <slot name="upload"></slot>
-            <button>
+            <button @click.prevent="submitForm"> 
                 Отправить
             </button>
         </div>
@@ -60,6 +61,9 @@ export default {
             height: 16
         }
     },
+    mounted() {
+        window.addEventListener('mousedown', (e) => this.handleBlur(e));
+    },
     methods: {
         input() {
             this.$emit('change:input', this.text)
@@ -67,9 +71,13 @@ export default {
         handleFocus() {
             this.focus = true;
         },
-        handleBlur() {
-            this.height = 16
-            this.focus = false;
+        handleBlur(event) {
+            if( !event.target.closest('.reviews-field') ) {
+                this.focus = false;
+            }
+        },
+        submitForm() {
+            this.$emit("form:click");
         }
     },
     computed: {
@@ -113,6 +121,9 @@ export default {
         border-bottom: 2px solid $main_red;
         .text-form-buttons {
             display: flex;
+            align-items: center;
+            
+            margin-top: $sp_5;
         }
     }
 </style>

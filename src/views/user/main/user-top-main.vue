@@ -1,7 +1,10 @@
 <template>
     <div class="user__page-main-top">
         <div class="main-top-photo">
-            <img v-if="!checkUserAvatar" src="@/assets/images/no-user-photo.png" alt>
+            <img v-if="!checkUserAvatar" 
+                src="@/assets/images/no-user-photo.png"
+                alt >
+
             <img v-else :src="user.avatar" alt>
 
             <button @click="openChangePhotoModal('avatar')">
@@ -21,7 +24,9 @@
                         <div class="status">
                             {{ user.status }}
                         </div>
-                        <button @click="() => { this.isEdit = true }">
+                        <button class="status-default-btn"
+                            @click="() => { this.isEdit = true }" >
+
                             Изменить
                         </button>
                     </div>
@@ -33,7 +38,9 @@
                             @blur="() => { this.isEdit = false }"
                             type="text" >
 
-                        <button @click="changeStatus">
+                        <button class="status-change-btn"
+                            @click="changeStatus" >
+
                             Сохранить
                         </button>
                     </div>
@@ -103,7 +110,7 @@ export default {
             .then((data) => {
                 this.$emit("change:status", data)
             })
-        }
+        },
     },
     computed: {
         checkUserAvatar() {
@@ -142,6 +149,7 @@ export default {
 
             &-status {
 
+
                 .status-default,
                 .status-change {
                     display: flex;
@@ -159,6 +167,14 @@ export default {
     
                         &:hover { color: $main_red }
                     }
+
+                    &-btn { display: none; }
+                }
+                &:hover {
+                    .status-change-btn,
+                    .status-default-btn {
+                        display: block;
+                    }
                 }
                 .status { width: 100%; }
             }
@@ -173,9 +189,7 @@ export default {
                         cursor: pointer;
                         transition: $transition;
 
-                        &:hover {
-                            color: $main_red;
-                        }
+                        &:hover { color: $main_red; }
                     }
                 }
                 &-list {
