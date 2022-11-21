@@ -2,10 +2,9 @@
     <div class="user__page-list">
 
         <h3>Лента</h3>
-        <app-reviews-field
+        <app-reviews-field v-model="form.text"
             placeholder="Расскажите что нового..." 
             rows="7"
-            @change:input="getInput"
             @form:click="submitPost" >
             
             <template v-if="form.photo" #photo>
@@ -25,14 +24,29 @@
 
             </template>
         </app-reviews-field>
+        <div class="user__page-list-content">
+
+            <transition-group name="list" tag="div">
+
+                <template v-for="(item, index) in posts" :key="index">
+                    <app-post-item :post="item" />
+                </template>
+            </transition-group>
+        </div>
     </div>
 </template>
 
 <script>
 import appReviewsField from '@/components/fields/app-reviews-field.vue'
-
+import appPostItem from '@/components/blocks/app-post-item.vue'
 
 export default {
+    props: {
+        posts: {
+            type: Array,
+            default: () => []
+        }
+    },
     data() {
         return {
             form: {
@@ -42,9 +56,6 @@ export default {
         }
     },
     methods: {
-        getInput(event) {
-            this.form.text = event
-        },
         getPhoto(event) {
             this.form.photo = event.target.files[0]
         },
@@ -59,18 +70,36 @@ export default {
             formData.append("photo", this.form.photo)
 
             await this.$store.dispatch("createPost", formData)
+
                 .then(({ post }) => {
                     this.$emit("add:post", post);
+                })
+                .catch((error) => console.log(error))
+                .finally(() => {
+                    
+                    this.form.text = ""
+                    this.form.photo = null
                 })
         }
     },
     components: {
-        appReviewsField
+        appReviewsField,
+        appPostItem
     },
 }
 </script>
 
 <style lang="scss" scoped>
+
+    .list-enter-active,
+    .list-leave-active {
+        transition: all 0.5s ease;
+    }
+    .list-enter-from,
+    .list-leave-to {
+        opacity: 0;
+        transform: translateX(30px);
+    }
     .user__page-list {
         width: 65%;
 
@@ -90,5 +119,9 @@ export default {
             @include box-size(200px, auto);
         }
         #file_upload { display: none }
+
+        &-content {
+            margin-top: $sp_10;
+        }
     }
 </style>

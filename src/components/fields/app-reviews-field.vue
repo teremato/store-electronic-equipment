@@ -2,7 +2,7 @@
     <form class="reviews-field"
         :class="{'active': focus}" >
 
-        <textarea v-model="text" ref="textarea"
+        <textarea v-model="text"
             @change="input"
             @focus="handleFocus"
             :class="{ 'resize': !resize }"
@@ -65,8 +65,8 @@ export default {
         window.addEventListener('mousedown', (e) => this.handleBlur(e));
     },
     methods: {
-        input() {
-            this.$emit('change:input', this.text)
+        input(event) {
+            this.$emit('update:modelValue', event.target.value)
         },
         handleFocus() {
             this.focus = true;
@@ -78,6 +78,8 @@ export default {
         },
         submitForm() {
             this.$emit("form:click");
+            this.text = '';
+            this.focus = false;
         }
     },
     computed: {

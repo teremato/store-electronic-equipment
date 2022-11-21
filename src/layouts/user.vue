@@ -17,12 +17,17 @@ export default {
     name: "app-user-layout",
     data() {
         return {
+            /** 
+             * TODO:Добавить иконки для каждого поля
+             */
             sideBar: [
                 { name: 'Моя страница', route: '/'},
                 { name: 'Лента', route: '/'},
+                { name: 'Друзья', route: '/' },
                 { name: 'Мои игры', route: '/'},
+                { name: 'Мои фотки', route: '/'},
                 { name: 'Сообщества', route: '/'},
-                { name: 'Настройки', route: '/' }
+                { name: 'Настройки', route: '/' },
             ]
         }
     }

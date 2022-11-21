@@ -1,6 +1,6 @@
 <template>
-    <div class="user__page-friends">
-        <h3>Друзья</h3>
+    <div class="user__page-games">
+        <h3>Игры</h3>
     </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .user__page-friends {
+    .user__page-games {
         @include box-size(max-content, 200px);
     }
 </style>

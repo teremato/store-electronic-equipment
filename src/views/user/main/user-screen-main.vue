@@ -6,8 +6,12 @@
             @change:status="changeStatus" />
 
         <div class="user__page-main-bottom">
-            <user-friends-main />
-            <user-list-main />
+            <div>
+                <user-friends-main />
+                <user-games-main />
+            </div>
+            <user-list-main :posts="user.posts"
+                @add:post="addNewPost" />
         </div>
     </div>
 
@@ -17,6 +21,7 @@
 import userTopMain from "@views/user/main/user-top-main.vue"
 import userFriendsMain from '@views/user/main/user-friends-main.vue'
 import userListMain from '@views/user/main/user-list-main.vue'
+import userGamesMain from "@views/user/main/user-games-main.vue"
 
 export default {
     data() {
@@ -34,6 +39,7 @@ export default {
                 .then((data) => {
                     this.user = data
                 })
+                .catch((error) => console.log(error))
         },
         uploadAvatar(event) {
             this.user.avatar = event
@@ -43,6 +49,9 @@ export default {
         },
         changeStatus(event) {
             this.user.status = event
+        },
+        addNewPost(event) {
+            this.user.posts.unshift(event)
         }
     },
     computed: {
@@ -51,6 +60,7 @@ export default {
         userTopMain,
         userFriendsMain,
         userListMain,
+        userGamesMain
     }
 }
 </script>

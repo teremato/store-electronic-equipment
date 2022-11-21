@@ -9,6 +9,7 @@
             </router-link>
 
             <div class="header-controller">
+                <!-- TODO:Добавить очистку поля инпут -->
                 <form class="header-controller-form"
                     :class="{ 'active': focus }" >
 

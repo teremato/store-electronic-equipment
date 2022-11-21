@@ -34,8 +34,6 @@
 
                         <input v-model="status" 
                             placeholder="Напишите ваш статус..."
-                            @focus="() => { this.isEdit = true }"
-                            @blur="() => { this.isEdit = false }"
                             type="text" >
 
                         <button class="status-change-btn"
@@ -56,6 +54,7 @@
                     </button>
                 </div>
                 <div class="main-top-info-photos-list">
+                    <!-- TODO:Проработать медиа юзера --> 
                     <template v-for="(item, index) in user.media" :key="index">
                         <img :src="item.image" alt>
                     </template>
@@ -107,8 +106,10 @@ export default {
             await this.$store.dispatch("changeStatus", {
                 status: this.status
             })
-            .then((data) => {
-                this.$emit("change:status", data)
+            .then(({ status }) => {
+
+                this.$emit("change:status", status);
+                this.isEdit = false;
             })
         },
     },
@@ -176,7 +177,11 @@ export default {
                         display: block;
                     }
                 }
-                .status { width: 100%; }
+                .status {
+                    font-size: $font_size_xs;
+                    color: gray;
+                    width: 100%; 
+                }
             }
 
             &-photos {
