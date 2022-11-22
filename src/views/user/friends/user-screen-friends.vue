@@ -1,10 +1,12 @@
 <template>
-    <slot></slot>
+    <div>
+        Это страница друзей
+    </div>
 </template>
 
 <script>
 export default {
-    name: "app-default-layout"
+
 }
 </script>
 

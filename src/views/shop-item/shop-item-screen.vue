@@ -25,7 +25,7 @@ export default {
             slug: this.$route.params.slug
         }
     },
-    mounted() {
+    created() {
 
         const slug = this.$route.params.slug;
         

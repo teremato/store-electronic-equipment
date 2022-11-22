@@ -51,7 +51,7 @@ export default {
             load: false,
         }
     },
-    mounted() {
+    created() {
 
         Promise.all([
             this.getSlides(),

@@ -2,18 +2,12 @@
     
     <div class="layout">
         <app-header ref="app-header" />
-
-        <component :is="layout">
-            <router-view  :key="$route"/>
-        </component>
-        
+            <router-view/>
         <app-footer />
     </div>
 </template>
 
 <script>
-import appDefaultLayout from '@/layouts/default.vue'
-import appUserLaypot from '@/layouts/user.vue'
 
 export default {
     name: 'app',
@@ -23,24 +17,6 @@ export default {
 
         await this.$store.dispatch('getUser', token)
     },
-    computed: {
-        layout() {
-            const layout = this.$route.meta.layout
-
-            switch(layout) {
-                case "app-default-layout":
-                    return appDefaultLayout
-                case "app-user-layout":
-                    return appUserLaypot
-                default: 
-                    return appDefaultLayout
-            }
-        }
-    },
-    components: {
-        appDefaultLayout,
-        appUserLaypot
-    }
 }
 </script>
 

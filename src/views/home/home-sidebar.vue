@@ -93,9 +93,7 @@ export default {
 
                     transition: all .2s ease;
 
-                    &:hover {
-                        color: $main-red;
-                    }
+                    &:hover { color: $main-red; }
                 }
             }
         }

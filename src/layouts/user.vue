@@ -8,11 +8,14 @@
                 </router-link>
             </template>
         </aside>
-        <slot></slot>
+        <router-view/>
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
+
 export default {
     name: "app-user-layout",
     data() {
@@ -23,13 +26,18 @@ export default {
             sideBar: [
                 { name: 'Моя страница', route: '/'},
                 { name: 'Лента', route: '/'},
-                { name: 'Друзья', route: '/' },
+                { name: 'Друзья', route: 'friends' },
                 { name: 'Мои игры', route: '/'},
                 { name: 'Мои фотки', route: '/'},
                 { name: 'Сообщества', route: '/'},
                 { name: 'Настройки', route: '/' },
             ]
         }
+    },
+    computed: {
+        ...mapGetters({
+            userId: "userId"
+        })
     }
 }
 </script>
@@ -51,9 +59,7 @@ export default {
             a {
                 transition: $transition;
 
-                &:hover {
-                    color: $main_red;
-                }
+                &:hover { color: $main_red; }
             }
         }
     }
