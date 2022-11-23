@@ -1,8 +1,9 @@
 <template>
     <div class="user__layout">
         <aside class="user_layout-aside">
+            
             <template v-for="(item, index) in sideBar" :key="index">
-                <router-link :to="`/user/${item.route}`">
+                <router-link :to="'/user/' + userId + item.route">
                     <!-- <icon icon=""/> -->
                     {{ item.name }}
                 </router-link>
@@ -15,18 +16,17 @@
 <script>
 import { mapGetters } from 'vuex'
 
-
 export default {
     name: "app-user-layout",
     data() {
         return {
             /** 
-             * TODO:Добавить иконки для каждого поля
+             * TODO: Добавить иконки для каждого поля
              */
             sideBar: [
                 { name: 'Моя страница', route: '/'},
-                { name: 'Лента', route: '/'},
-                { name: 'Друзья', route: 'friends' },
+                { name: 'Лента', route: '/feed'},
+                { name: 'Друзья', route: '/friends' },
                 { name: 'Мои игры', route: '/'},
                 { name: 'Мои фотки', route: '/'},
                 { name: 'Сообщества', route: '/'},

@@ -7,10 +7,21 @@
 
             <img v-else :src="user.avatar" alt>
 
-            <button @click="openChangePhotoModal('avatar')">
+            <button v-if="checkIsUserPage"
+                @click="openChangePhotoModal('avatar')" >
+
                 <icon icon="camera"/>
                 Обновить фото
             </button>
+
+            <div v-else class="main-top-photo-another-user">
+                <button>
+                    <icon icon="person-plus"/>
+                </button>
+                <button>
+                    <icon icon="chat-right-text"/>
+                </button>
+            </div>
         </div>
         <div class="main-top-info">
             <div class="main-top-info-name">
@@ -24,7 +35,8 @@
                         <div class="status">
                             {{ user.status }}
                         </div>
-                        <button class="status-default-btn"
+                        <button v-if="checkIsUserPage" 
+                            class="status-default-btn"
                             @click="() => { this.isEdit = true }" >
 
                             Изменить
@@ -49,9 +61,10 @@
 
                     <h3>Фотографии</h3>
 
-                    <button @click="openChangePhotoModal('media')">
+                    <button v-if="checkIsUserPage" @click="openChangePhotoModal('media')">
                         Добавить фото
                     </button>
+
                 </div>
                 <div class="main-top-info-photos-list">
                     <!-- TODO:Проработать медиа юзера --> 
@@ -73,6 +86,7 @@
 
 <script>
 import appPhotoUploadModal from "@/components/modals/app-photo-upload-modal.vue"
+import { mapGetters } from 'vuex';
 
 
 export default {
@@ -114,6 +128,12 @@ export default {
         },
     },
     computed: {
+        ...mapGetters({
+            userId: 'userId',
+        }),
+        checkIsUserPage() {
+            return (this.userId == this.$route.params.id) ? true : false
+        },
         checkUserAvatar() {
             return (this.user.avatar === null) ? false : true
         }
@@ -129,17 +149,26 @@ export default {
         display: flex;
         gap: $sp_20;
 
-        img { @include box-size(200px, 200px); }
+        img { 
+            @include box-size(200px, 200px);
+            @include box-shadow-default;
+        }
 
         .main-top-photo {
-            @include box-shadow-default;
 
             button {
                 @include default-btn(5px, 10px);
                 @include box-size(auto, 100%);
+                @include icon(25px);
                 gap: $sp_5;
+            }
 
-                .bi { font-size: 25px; }
+            &-another-user {
+                @include flex-default;
+                justify-content: space-between;
+                gap: $sp_10;
+
+                button { @include default-btn(5px, 10px); }
             }
         }
 

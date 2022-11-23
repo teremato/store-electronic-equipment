@@ -14,5 +14,10 @@ export default {
             name: 'Друзья',
             component: () => import('@views/user/friends/user-screen-friends')
         },
+        {
+            path: ':id/feed',
+            name: 'Лента',
+            component: () => import('@views/user/feed/user-screen-feed')
+        }
     ]
 }

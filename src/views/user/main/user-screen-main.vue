@@ -29,7 +29,7 @@ export default {
             user: {}
         }
     },
-    mounted() {
+    created() {
         this.getUser(this.$route.params.id);
     },
     methods: {

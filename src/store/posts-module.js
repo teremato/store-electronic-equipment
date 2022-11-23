@@ -9,6 +9,12 @@ export default {
                 .then(({ data }) => {
                     return data
                 })
+        },
+        async getUserPost({ commit }) {
+            return await $api.get("/posts/user")
+                .then(({ data }) => {
+                    return data
+                })
         }
     }
 }

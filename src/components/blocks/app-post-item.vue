@@ -3,8 +3,13 @@
         <div class="post__header">
 
             <div class="post__header-author">
+
                 <div class="post__header-author-icon">
-                    <img :src="post.user.avatar" alt>
+
+                    <img v-if="checkUserAvatar" 
+                        :src="post.user.avatar" alt >
+
+                    <img v-else src="@/assets/images/no-user-photo.png" alt >
 
                     <div class="post__header-info">
                         <span>{{ post.user.name }}</span>
@@ -13,6 +18,7 @@
                         </span>
                     </div>
                 </div>
+                
                 <template v-if="isAuthor">
 
                     <icon @click="() => this.$refs.postOption.open()" 
@@ -28,7 +34,7 @@
             </div>
         </div>
         <div v-if="post.photo" class="post__middle">
-            <img :src="post.photo.url" alt>
+            <img :src="post.photo.image" alt>
         </div>
         <div class="post__bottom">
 
@@ -67,6 +73,9 @@ export default {
         ...mapGetters({
             userId: "userId"
         }),
+        checkUserAvatar() {
+            return (this.post.user.avatar)
+        },
         isAuthor() {
             return (this.userId === this.post.user.id)
         }
@@ -129,7 +138,7 @@ export default {
         }
         .post__middle {
             margin-bottom: $sp_15;
-            img { @include box-size(200px, 100%); }
+            img { @include box-size(auto, 100%); }
         }
         .post__bottom {
             @include flex-default;
