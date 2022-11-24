@@ -15,7 +15,7 @@
             </button>
 
             <div v-else class="main-top-photo-another-user">
-                <button>
+                <button @click="addFriend">
                     <icon icon="person-plus"/>
                 </button>
                 <button>
@@ -60,7 +60,6 @@
                 <div class="main-top-info-photos-header">
 
                     <h3>Фотографии</h3>
-
                     <button v-if="checkIsUserPage" @click="openChangePhotoModal('media')">
                         Добавить фото
                     </button>
@@ -126,6 +125,14 @@ export default {
                 this.isEdit = false;
             })
         },
+        async addFriend() {
+
+            await this.$store.dispatch("addFriend", { id: this.user.id })
+                .then(() => {})
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
     },
     computed: {
         ...mapGetters({

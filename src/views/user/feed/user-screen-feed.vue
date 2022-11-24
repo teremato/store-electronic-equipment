@@ -11,6 +11,7 @@
                     rows="7" />
 
                 <div class="user__page-feed-list">
+                    
                     <template v-for="(item, index) in posts" :key="index" >
                         <app-post-item :post="item" />
                     </template>
@@ -28,6 +29,7 @@
 import appTabBlock from '@/components/blocks/app-tab-block.vue';
 import appReviewsField from '@/components/fields/app-reviews-field.vue';
 import appPostItem from '@/components/blocks/app-post-item.vue';
+
 
 export default {
     data() {
