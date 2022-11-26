@@ -153,7 +153,8 @@ export default {
         ...mapGetters({
             isAuth: "isAuth",
             userName: "userName",
-            userId: "userId"
+            userId: "userId",
+            user: "user"
         })
     },
     components: {

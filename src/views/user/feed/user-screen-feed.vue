@@ -25,6 +25,9 @@
     </div>
 </template>
 
+TODO: Сделать общую ленту с друзьями,
+TODO: Сделать блок с избранным
+
 <script>
 import appTabBlock from '@/components/blocks/app-tab-block.vue';
 import appReviewsField from '@/components/fields/app-reviews-field.vue';

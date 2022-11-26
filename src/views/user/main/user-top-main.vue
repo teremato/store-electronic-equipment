@@ -15,9 +15,14 @@
             </button>
 
             <div v-else class="main-top-photo-another-user">
-                <button @click="addFriend">
+
+                <button v-if="!user.is_friend" @click="addFriend">
                     <icon icon="person-plus"/>
                 </button>
+                    <button v-else @click="removeFriend">
+                        <icon icon="person-x" />
+                    </button>
+
                 <button>
                     <icon icon="chat-right-text"/>
                 </button>
@@ -42,7 +47,8 @@
                             Изменить
                         </button>
                     </div>
-                    <div v-else class="status-change">
+                    <div v-else-if="user.status == null && checkIsUserPage"
+                        class="status-change" >
 
                         <input v-model="status" 
                             placeholder="Напишите ваш статус..."
@@ -60,7 +66,9 @@
                 <div class="main-top-info-photos-header">
 
                     <h3>Фотографии</h3>
-                    <button v-if="checkIsUserPage" @click="openChangePhotoModal('media')">
+                    <button v-if="checkIsUserPage"
+                        @click="openChangePhotoModal('media')" >
+
                         Добавить фото
                     </button>
 
@@ -128,10 +136,13 @@ export default {
         async addFriend() {
 
             await this.$store.dispatch("addFriend", { id: this.user.id })
-                .then(() => {})
-                .catch((error) => {
-                    console.log(error)
+                .then(() => {
+                    this.$emit("user:add");
                 })
+                .catch((error) => { console.log(error) })
+        },
+        async removeFriend() {
+            this.$emit("user:remove");
         }
     },
     computed: {

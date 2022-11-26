@@ -10,7 +10,7 @@ export default {
                 .then(({ data }) => { return data })
         },
         async getAcceptFriends({ commit }) {
-            return await $api.get("/friends/accept")
+            return await $api.post("/friends/accept")
                 .then(({ data }) => { return data })
         },
         async addFriend({ commit }, { id }) {

@@ -44,6 +44,9 @@
     </article>
 </template>
 
+TODO: 1. Сделать возможность ставить лайк,
+TODO: 2. Сделать возможность добавлять в избранное.
+
 <script>
 import moment from 'moment'
 import { mapGetters } from 'vuex'

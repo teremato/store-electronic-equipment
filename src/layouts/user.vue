@@ -9,7 +9,7 @@
                 </router-link>
             </template>
         </aside>
-        <router-view/>
+        <router-view :key="$route"/>
     </div>
 </template>
 

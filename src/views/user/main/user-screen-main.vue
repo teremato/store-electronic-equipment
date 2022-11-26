@@ -7,7 +7,7 @@
 
         <div class="user__page-main-bottom">
             <div>
-                <user-friends-main />
+                <user-friends-main :friends="user.friends" />
                 <user-games-main />
             </div>
             <user-list-main :posts="user.posts"
