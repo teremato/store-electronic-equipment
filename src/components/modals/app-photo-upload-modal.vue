@@ -47,6 +47,10 @@ export default {
         type: {
             type: String,
             default: ""
+        },
+        userId: {
+            type: [String, Number],
+            default: ''
         }
     },
     data() {
@@ -96,15 +100,14 @@ export default {
             formData.append("photo", this.photo);
 
             await this.$store.dispatch("addUserMedia", {
-                id: 1,
+                id: this.userId,
                 photo: formData
             })
-            .then(({ avatar }) => {
-                this.$emit("change:photo", avatar)
+            .then(({ photo }) => {
+                this.$emit("change:photo", photo)
             })
             .finally(() => this.closeModal())
         }
-
     },
     components: {
         appModalContainer

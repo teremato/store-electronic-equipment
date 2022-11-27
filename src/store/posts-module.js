@@ -15,6 +15,19 @@ export default {
                 .then(({ data }) => {
                     return data
                 })
+        },
+        async likePost({ commit }, { id }) {
+            return await $api.post(`/posts/like/${id}`)
+                .then(({ data }) => {
+                    return data
+                })
+        },
+        async addFavoritePost({ commit }, { id }) {
+            return await $api.post(`/posts/favorite/${id}`)
+                .then(({ data }) => {
+                    return data
+                })
         }
+
     }
 }

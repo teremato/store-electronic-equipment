@@ -47,7 +47,7 @@
                             Изменить
                         </button>
                     </div>
-                    <div v-else-if="user.status == null && checkIsUserPage"
+                    <div v-else-if="isEdit && checkIsUserPage"
                         class="status-change" >
 
                         <input v-model="status" 
@@ -74,9 +74,11 @@
 
                 </div>
                 <div class="main-top-info-photos-list">
-                    <!-- TODO:Проработать медиа юзера --> 
                     <template v-for="(item, index) in user.media" :key="index">
-                        <img :src="item.image" alt>
+                        <div class="photo__item">
+
+                            <img :src="item.image" alt>
+                        </div>
                     </template>
                 </div>
             </div>
@@ -84,6 +86,7 @@
 
         <app-photo-upload-modal v-if="modal"
             :type="type"
+            :user-id="userId"
             @modal:close="() => { this.modal = ''} "
             @change:avatar="changeAvatar"
             @change:photo="addUserPhoto" />
@@ -120,7 +123,10 @@ export default {
             this.$emit("upload:avatar", event)
         },
         addUserPhoto(event) {
-            this.$emit("upload:photo", event)
+            
+            if(this.user.media.length < 4) {
+                this.$emit("upload:photo", event)
+            }
         },
         async changeStatus() {
 
@@ -196,8 +202,6 @@ export default {
             justify-content: space-between;
 
             &-status {
-
-
                 .status-default,
                 .status-change {
                     display: flex;
@@ -215,14 +219,11 @@ export default {
     
                         &:hover { color: $main_red }
                     }
-
                     &-btn { display: none; }
                 }
                 &:hover {
                     .status-change-btn,
-                    .status-default-btn {
-                        display: block;
-                    }
+                    .status-default-btn { display: block; }
                 }
                 .status {
                     font-size: $font_size_xs;
@@ -246,15 +247,22 @@ export default {
                 }
                 &-list {
                     @include box-size(100px, 405px);
-                    @include box-shadow-default;
                     display: flex;
-                    justify-content: space-between;
-
+                    gap: $sp_5;
                     margin-top: $sp_5;
-
                     overflow: hidden;
+                    .photo__item {
+                        @include box-size(100px, 33.3%);
+                        cursor: pointer;
 
-                    img { @include box-size(100px, auto); }
+                        display: flex;
+                        justify-content: center;
+
+                        overflow: hidden;
+                        background-color: $black;
+                        
+                        img { @include box-size(135px, max-content); }
+                    }
                 }
             }
         }

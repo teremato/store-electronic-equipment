@@ -4,7 +4,8 @@
             
             <template v-for="(item, index) in sideBar" :key="index">
                 <router-link :to="'/user/' + userId + item.route">
-                    <!-- <icon icon=""/> -->
+
+                    <!-- <icon :icon="item.icon"/> -->
                     {{ item.name }}
                 </router-link>
             </template>
@@ -24,13 +25,13 @@ export default {
              * TODO: Добавить иконки для каждого поля
              */
             sideBar: [
-                { name: 'Моя страница', route: '/'},
-                { name: 'Лента', route: '/feed'},
-                { name: 'Друзья', route: '/friends' },
-                { name: 'Мои игры', route: '/'},
-                { name: 'Мои фотки', route: '/'},
-                { name: 'Сообщества', route: '/'},
-                { name: 'Настройки', route: '/' },
+                { name: 'Моя страница', route: '/', icon: 'person-circle'},
+                { name: 'Лента', route: '/feed', icon: 'newspaper'},
+                { name: 'Друзья', route: '/friends', icon: 'person-lines-fill' },
+                { name: 'Мои игры', route: '/', icon: 'mouse3'},
+                { name: 'Мои фотки', route: '/', icon: 'images'},
+                { name: 'Сообщества', route: '/', icon: 'people'},
+                { name: 'Настройки', route: '/', icon: 'nut' },
             ]
         }
     },
@@ -54,11 +55,15 @@ export default {
         .user_layout-aside {
             @include flex-vertical;
             @include box-size(auto, 20%);
-            gap: $sp_5;
+            gap: $sp_10;
+            // margin-right: $sp_20;
 
             a {
-                transition: $transition;
+                @include flex-default;
+                // @include icon(18px);
+                // gap: $sp_10;
 
+                transition: $transition;
                 &:hover { color: $main_red; }
             }
         }

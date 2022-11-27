@@ -6,6 +6,7 @@
 
                 <div class="post__header-author-icon">
 
+                    <!-- TODO: Вынести миниатюру юзера в отдельный компонент -->
                     <img v-if="checkUserAvatar" 
                         :src="post.user.avatar" alt >
 
@@ -38,19 +39,28 @@
         </div>
         <div class="post__bottom">
 
-            <icon icon="heart"/>
-            <icon icon="bookmarks"/>
+            <span  @click="setLike"
+                class="post__bottom-item"
+                :class="{'active': post.user_like}" >
+
+                <icon icon="heart" />
+                {{ post.likes_count }}
+            </span>
+
+            <span @click="setFavorite"
+                class="post__bottom-item"
+                :class="{'active': post.user_favorite}">
+
+                <icon icon="bookmarks"/>
+            </span>
         </div>
     </article>
 </template>
 
-TODO: 1. Сделать возможность ставить лайк,
-TODO: 2. Сделать возможность добавлять в избранное.
-
 <script>
+import appDropdownModal from '@components/modals/app-dropdown-modal.vue'
 import moment from 'moment'
 import { mapGetters } from 'vuex'
-import appDropdownModal from '../modals/app-dropdown-modal.vue'
 
 export default {
     props: {
@@ -70,6 +80,22 @@ export default {
     methods: {
         getDate(date) {
             return moment(date).locale('ru').fromNow()
+        },
+        async setLike() {
+
+            await this.$store.dispatch("likePost", { id: this.post.id })
+                .then(() => {
+                    this.$emit("post:like", this.post.id)
+                })
+                .catch((error) => console.log(error))
+        },
+        async setFavorite() {
+            
+            await this.$store.dispatch("addFavoritePost", { id: this.post.id })
+                .then(() => {
+                    this.$emit("post:favorite", this.post.id)
+                })
+                .catch((error) => console.log(error))
         }
     },
     computed: {
@@ -147,12 +173,13 @@ export default {
             @include flex-default;
             justify-content: space-between;
 
-            .bi {
-                font-size: 22px;
+            &-item {
+                @include icon(22px);
                 cursor: pointer;
                 transition: $transition;
 
                 &:hover { color: $main_red }
+                &.active { color: $main_red }
             }
         }
     }

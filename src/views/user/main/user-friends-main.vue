@@ -1,7 +1,11 @@
 <template>
     <div class="user__page-friends">
 
-        <h3>Друзья {{ friends.length }}</h3>
+        <h3>
+            Друзья
+            <span>{{ friends.length }}</span>
+        </h3>
+
         <div v-if="friends.length" class="user__page-friends-list">
 
             <template v-for="(item, index) in friends" 
@@ -9,7 +13,9 @@
 
                 <div class="friends-list-item">
 
-                    <img v-if="item.avatar" :src="item.avatar" alt>
+                    <img v-if="item.avatar"
+                        :src="item.avatar" alt >
+
                     <img v-else src="@/assets/images/no-user-photo.png"
                         class="no-image"
                         alt >
@@ -37,6 +43,8 @@ export default {
 <style lang="scss" scoped>
     .user__page-friends {
         @include box-size(max-content, 200px);
+
+        h3 span { color: gray; }
         &-list {
             @include box-shadow-default;
             @include flex-vertical;

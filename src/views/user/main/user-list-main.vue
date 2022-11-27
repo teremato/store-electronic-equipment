@@ -29,7 +29,10 @@
             <transition-group name="list" tag="div">
 
                 <template v-for="(item, index) in posts" :key="index">
-                    <app-post-item :post="item" />
+                    <app-post-item :post="item"
+                        @post:like="(event) => { this.changeLike(event, 'posts') }"
+                        @post:favorite="(event => { this.changeFavorite(event, 'posts') })" />
+
                 </template>
             </transition-group>
         </div>
@@ -39,8 +42,10 @@
 <script>
 import appReviewsField from '@/components/fields/app-reviews-field.vue'
 import appPostItem from '@/components/blocks/app-post-item.vue'
+import likesAndFavorites from '@/mixins/likesAndFavorites'
 
 export default {
+    mixins: [likesAndFavorites],
     props: {
         posts: {
             type: Array,
