@@ -6,6 +6,8 @@ import AuthModule from '@store/auth-module';
 import MediaModule from '@store/media-module';
 import PostsModule from '@store/posts-module';
 import friendModule from '@store/friend-module';
+import feedModule from '@store/feed-module';
+
 
 export default createStore({
     state: {
@@ -22,6 +24,7 @@ export default createStore({
         AuthModule,
         MediaModule,
         PostsModule,
-        friendModule
+        friendModule,
+        feedModule
     }
 })

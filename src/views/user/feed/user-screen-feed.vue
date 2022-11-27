@@ -28,8 +28,8 @@
     </div>
 </template>
 
-TODO: Сделать общую ленту с друзьями,
-TODO: Сделать блок с избранным
+TODO: Сделать обсервер для бесконечной ленты
+TODO Сделать бесконечную ленту ??
 
 <script>
 import appTabBlock from '@/components/blocks/app-tab-block.vue';
@@ -45,34 +45,60 @@ export default {
                 text: '',
                 photo: null
             },
-            filter: '',
             tabs: [
                 { name: "Новое", filter: 'new' },
                 { name: "У друзей", filter: 'friends' },
                 { name: "Популярное", filter: 'popularity' },
                 { name: "Избранное", filter: 'favorite' },
             ],
-            posts: []
+            params: {
+                page: 1,
+                per_page: 10
+            },
+            posts: [],
         }
     },
-    created() {
-        this.getNewPosts();
-    },  
     methods: {
         getFilter(event) {
-            this.filter = event
+            this.feedController(event);
         },
-        feedController() {
+        feedController(type) {
 
+            switch (type) {
+                case "new":
+                    this.getPostsByType("getNewFeed");
+                        break;
+                case "friends":
+                    this.getPostsByType("getFriendFeed");
+                        break;
+                case "popularity":
+                    this.getPostsByType("getPopularityFeed");
+                        break;
+                case "favorite":
+                    this.getPostsByType("getFavoriteFeed");
+                        break;
+                default:
+                    break;
+            }
         },
-        async getNewPosts() {
-            await this.$store.dispatch("getUserPost")
+        async getPostsByType(type) {
+
+            await this.$store.dispatch(type, this.params)
                 .then(({ data }) => {
                     this.posts = data;
                 })
                 .catch((error) => console.log(error))
+        },
+        oserver() {
+
+        },
+        scrollTop() {
+
         }
-    },  
+    },
+    watch: {
+
+    },
     components: {
         appTabBlock,
         appReviewsField,
