@@ -18,6 +18,11 @@ export default {
             path: ':id/feed',
             name: 'Лента',
             component: () => import('@views/user/feed/user-screen-feed')
+        },
+        {
+            path: ':id/photos',
+            name: 'Фотографии',
+            component: () => import('@views/user/photos/user-screen-photos')
         }
     ]
 }

@@ -29,7 +29,7 @@ export default {
                 { name: 'Лента', route: '/feed', icon: 'newspaper'},
                 { name: 'Друзья', route: '/friends', icon: 'person-lines-fill' },
                 { name: 'Мои игры', route: '/', icon: 'mouse3'},
-                { name: 'Мои фотки', route: '/', icon: 'images'},
+                { name: 'Мои фотки', route: '/photos', icon: 'images'},
                 { name: 'Сообщества', route: '/', icon: 'people'},
                 { name: 'Настройки', route: '/', icon: 'nut' },
             ]

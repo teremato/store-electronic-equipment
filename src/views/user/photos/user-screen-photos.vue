@@ -1,6 +1,6 @@
 <template>
     <div class="user__page-photos">
-
+        <h3>Фото</h3>
     </div>
 </template>
 

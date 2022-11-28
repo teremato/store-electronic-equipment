@@ -13,32 +13,35 @@
                 <div class="user__page-feed-list">
                     
                     <template v-for="(item, index) in posts" :key="index" >
-                        <app-post-item :post="item"
+                        <app-post-item ref="postItem"
+                            :post="item"
                             @post:like="(event) => { this.changeLike(event, 'posts') }"
                             @post:favorite="(event) => { this.changeFavorite(event, 'posts') }" />
                             
                     </template>
+
+                    <div ref="pagination"></div>
                 </div>
             </div>
 
             <app-tab-block :tabs="tabs"
-                @change:filter="getFilter" />
+                @change:filter="getFilter"
+                class="user__page-feed-tab-block" />
         </div>
             
     </div>
 </template>
 
-TODO: Сделать обсервер для бесконечной ленты
-TODO Сделать бесконечную ленту ??
-
 <script>
-import appTabBlock from '@/components/blocks/app-tab-block.vue';
-import appReviewsField from '@/components/fields/app-reviews-field.vue';
-import appPostItem from '@/components/blocks/app-post-item.vue';
-import likesAndFavorites from '@/mixins/likesAndFavorites';
+import appTabBlock from '@components/blocks/app-tab-block.vue';
+import appReviewsField from '@components/fields/app-reviews-field.vue';
+import appPostItem from '@components/blocks/app-post-item.vue';
+import likesAndFavorites from '@mixins/likesAndFavorites';
+import pagination from '@mixins/pagination';
+
 
 export default {
-    mixins: [likesAndFavorites],
+    mixins: [likesAndFavorites, pagination],
     data() {
         return {
             form: {
@@ -51,16 +54,21 @@ export default {
                 { name: "Популярное", filter: 'popularity' },
                 { name: "Избранное", filter: 'favorite' },
             ],
-            params: {
-                page: 1,
-                per_page: 10
-            },
+            filter: '',
             posts: [],
+            trigger: false
+
         }
+    },
+    mounted() {
+
+        this.feedController(this.filter)
+        this.observer(this.$refs.pagination);
     },
     methods: {
         getFilter(event) {
-            this.feedController(event);
+            this.posts = [];
+            this.filter = event;
         },
         feedController(type) {
 
@@ -85,19 +93,25 @@ export default {
 
             await this.$store.dispatch(type, this.params)
                 .then(({ data }) => {
-                    this.posts = data;
+
+                    this.posts = [...this.posts, ...data];
                 })
-                .catch((error) => console.log(error))
+                .catch((error) => {
+                    console.log(error)
+                })
         },
-        oserver() {
-
-        },
-        scrollTop() {
-
-        }
     },
     watch: {
-
+        "params.page": {
+            handler() {
+                this.feedController(this.filter);
+            }
+        },
+        "filter": {
+            handler() {
+                this.updatePage();
+            }
+        }
     },
     components: {
         appTabBlock,
@@ -119,5 +133,8 @@ export default {
             h2 { margin-bottom: $sp_20; }
         }
         &-list { margin-top: $sp_10; }
+        &-tab-block {
+            position: sticky;
+        }
     }
 </style>
