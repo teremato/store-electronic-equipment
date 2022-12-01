@@ -30,8 +30,8 @@ export default {
                 { name: 'Друзья', route: '/friends', icon: 'person-lines-fill' },
                 { name: 'Мои игры', route: '/', icon: 'mouse3'},
                 { name: 'Мои фотки', route: '/photos', icon: 'images'},
-                { name: 'Сообщества', route: '/', icon: 'people'},
-                { name: 'Настройки', route: '/', icon: 'nut' },
+                // { name: 'Сообщества', route: '/', icon: 'people'},
+                { name: 'Настройки', route: '/settings', icon: 'nut' },
             ]
         }
     },
@@ -56,12 +56,9 @@ export default {
             @include flex-vertical;
             @include box-size(auto, 20%);
             gap: $sp_10;
-            // margin-right: $sp_20;
 
             a {
                 @include flex-default;
-                // @include icon(18px);
-                // gap: $sp_10;
 
                 transition: $transition;
                 &:hover { color: $main_red; }

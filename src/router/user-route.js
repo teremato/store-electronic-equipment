@@ -23,6 +23,11 @@ export default {
             path: ':id/photos',
             name: 'Фотографии',
             component: () => import('@views/user/photos/user-screen-photos')
+        },
+        {
+            path: ':id/settings',
+            name: 'Настройки',
+            component: () => import("@views/user/settings/user-screen-settings")
         }
     ]
 }
