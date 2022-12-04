@@ -39,6 +39,8 @@
 <script>
 import appModalContainer from '@components/use/app-modal-container.vue';
 import modal from '@/mixins/modal';
+import { CHANGE_AVATAR } from '@store/actions/user-actions';
+import { ADD_USER_MEDIA } from '@store/actions/media-actions';
 
 
 export default {
@@ -87,7 +89,7 @@ export default {
             const formData = new FormData();
             formData.append("photo", this.photo);
 
-            await this.$store.dispatch("changeAvatar", formData)
+            await this.$store.dispatch(CHANGE_AVATAR, formData)
                 .then((data) => {
 
                     this.$emit("change:avatar", data)
@@ -99,7 +101,7 @@ export default {
             const formData = new FormData();
             formData.append("photo", this.photo);
 
-            await this.$store.dispatch("addUserMedia", {
+            await this.$store.dispatch(ADD_USER_MEDIA, {
                 id: this.userId,
                 photo: formData
             })

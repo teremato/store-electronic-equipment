@@ -40,9 +40,10 @@
 </template>
 
 <script>
-import appReviewsField from '@/components/fields/app-reviews-field.vue'
-import appPostItem from '@/components/blocks/app-post-item.vue'
-import likesAndFavorites from '@/mixins/likesAndFavorites'
+import appReviewsField from '@components/fields/app-reviews-field.vue'
+import appPostItem from '@components/blocks/app-post-item.vue'
+import likesAndFavorites from '@mixins/likesAndFavorites'
+import { CREATE_POST } from '@store/actions/posts-actions'
 
 export default {
     mixins: [likesAndFavorites],
@@ -74,7 +75,7 @@ export default {
             formData.append("text", this.form.text)
             formData.append("photo", this.form.photo)
 
-            await this.$store.dispatch("createPost", formData)
+            await this.$store.dispatch(CREATE_POST, formData)
 
                 .then(({ post }) => {
                     this.$emit("add:post", post);
@@ -94,39 +95,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style src="@app-sass/pages/user.scss" 
+    lang="scss" 
+    scoped >
 
-    .list-enter-active,
-    .list-leave-active {
-        transition: all 0.5s ease;
-    }
-    .list-enter-from,
-    .list-leave-to {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    .user__page-list {
-        width: 65%;
-
-        h3 { margin-bottom: $sp_20; }
-
-        .button-upload {
-            @include btn-input;
-            cursor: pointer;
-
-            font-size: 30px;
-            margin-right: $sp_10;
-            transition: $transition;
-
-            &:hover { color: $main_red; }
-        }
-        .photo_file {
-            @include box-size(200px, auto);
-        }
-        #file_upload { display: none }
-
-        &-content {
-            margin-top: $sp_10;
-        }
-    }
 </style>

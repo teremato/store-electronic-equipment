@@ -40,6 +40,7 @@
 import appModalContainer from '@components/use/app-modal-container.vue';
 import appInput from '@components/fields/app-input.vue';
 import modal from '@mixins/modal.js'
+import { USER_LOGIN } from '@store/actions/auth-actions'; 
 
 export default {
     mixins: [modal],
@@ -56,7 +57,7 @@ export default {
     },
     methods: {
         async login() {
-            await this.$store.dispatch('userLogin', this.form)
+            await this.$store.dispatch(USER_LOGIN, this.form)
                 .then(({ token }) => {
                     
                     localStorage.setItem('token', token)

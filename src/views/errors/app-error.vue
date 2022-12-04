@@ -27,41 +27,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-    .app__error-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+<style src="@app-sass/pages/error.scss"
+    lang="scss"
+    scoped >
 
-        height: 75vh;
-    }
-    .app__error {
-        @include flex-vertical;
-
-        &-title {
-            text-align: center;
-            font-size: $font-size_l;
-        }
-        &-status {
-            text-align: center;
-            font-size: 60px;
-        }
-        &-text {
-            text-align: center;
-
-            p { margin-bottom: $sp_10; }
-            &-btn {
-                @include box-size(100%, 100%);
-                padding: $sp_10;
-
-                color: $white;
-                background-color: $black;
-
-                a { transition: $transition; }
-                a:hover {
-                    color: $main_red;
-                }
-            }
-        }
-    }
 </style>

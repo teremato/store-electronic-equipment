@@ -1,5 +1,6 @@
 /*
-    HOME PAGE STYLES
+    HOME-SCREEN
+    component: @views/home/home-screen.vue
 */
 
 .home-page {
@@ -25,5 +26,146 @@
             @include box-size(100%, 75%);
         }
 
+    }
+}
+
+/*
+    HOME-SIDEBAR
+    component: @views/home/home-sidebar.vue
+*/
+
+.home__page-side-bar {
+    @include box-size(auto, 25%);
+    @include box-shadow-default;
+
+    padding: $sp_20 $sp-10 30px $sp-10;
+    margin-right: $sp_20;
+
+    color: $white;
+    background-color: $black;
+
+    &-category,
+    &-genres {
+        margin-left: $sp-20;
+        .title {
+            @include flex-default;
+            gap: 10px;
+
+            .bi {
+                margin: 0;
+                color: $main-red;
+            }
+
+            padding: $sp-10 $sp-10 $sp-10 0;
+        }
+        ul {
+            @include flex-vertical;
+            gap: 10px;
+
+            list-style: none;
+
+            li {
+                cursor: pointer;
+                font-size: 14px;
+                margin-left: 26.4px;
+
+                transition: all .2s ease;
+
+                &:hover { color: $main-red; }
+            }
+        }
+    }
+}
+
+/*
+    HOME_RECOMMEND_BLOCK
+    component: @views/home/home-recommend-block.vue
+*/
+
+.home__recommendation {
+
+    &-title {
+    
+        margin-top: $sp_20;
+        font-weight: 500;
+    
+    }
+    
+    &-block {
+    
+        display: grid;
+        grid-template-areas:
+            "banner_1 banner_1"
+            "banner_2 banner_4"
+            "banner_3 banner_4";
+    
+        grid-template-rows: 46% 27% 27%;
+        grid-template-columns: 60% 40%;
+    
+    
+        margin-top: $sp_20;
+    
+    }
+    
+    &-block-info {
+    
+        @include box-size(0%, 100%);
+    
+        position: absolute;
+        top: 0;
+        left: 0;
+    
+        overflow: hidden;
+    
+        transition: all .5s;
+    
+        color: $white;
+        background-color: rgba(0, 0, 0, 0.9);
+    
+        button {
+            @include default-btn(20px, 10px);
+            gap: 10px;
+    
+            background-color: transparent;
+        }
+    }
+    
+    @include icon(25px);
+    
+    &-block-item {
+    
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    
+        img { @include box-size(100%, 100%); }
+    
+        &:hover {
+            .home__recommendation-block-info {
+                @include box-size(100%, 100%);
+            }
+        }
+    }
+    
+    .item-0 {
+        grid-area: banner_1;
+        @include recommend-item(auto, 50%, 25px, $flex-def: true);
+    }
+    
+    .item-1 {
+        grid-area: banner_2;
+        @include recommend-item(auto, 90%, auto, $flex-def: true);
+    }
+    
+    .item-2 {
+        grid-area: banner_3;
+        @include recommend-item(auto, 90%, auto, $flex-def: true);
+    }
+    
+    .item-3 {
+        grid-area: banner_4;
+    
+        @include recommend-item(auto, 80%, 25px, $flex-def: false);
+        justify-content: space-around;
     }
 }

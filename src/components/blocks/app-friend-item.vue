@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { ACCEPT_FRIEND } from '@/store/actions/friends-actions'
 
 export default {
     props: {
@@ -44,7 +45,9 @@ export default {
     methods: {
         async acceptFriend() {
 
-            await this.$store.dispatch("acceptFriend", { id: this.friend.user_id })
+            await this.$store.dispatch(ACCEPT_FRIEND, {
+                    id: this.friend.user_id 
+                })
                 .then(({ friend }) => {
                     
                     this.$emit("click:accept", friend)

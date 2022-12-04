@@ -54,49 +54,8 @@ export default {
 
 </script>
 
-<style lang="scss">
-
-    .home__page-side-bar {
-        @include box-size(auto, 25%);
-        @include box-shadow-default;
-
-        padding: $sp_20 $sp-10 30px $sp-10;
-        margin-right: $sp_20;
-
-        color: $white;
-        background-color: $black;
-
-        &-category,
-        &-genres {
-            margin-left: $sp-20;
-            .title {
-                @include flex-default;
-                gap: 10px;
-
-                .bi {
-                    margin: 0;
-                    color: $main-red;
-                }
-
-                padding: $sp-10 $sp-10 $sp-10 0;
-            }
-            ul {
-                @include flex-vertical;
-                gap: 10px;
-
-                list-style: none;
-
-                li {
-                    cursor: pointer;
-                    font-size: 14px;
-                    margin-left: 26.4px;
-
-                    transition: all .2s ease;
-
-                    &:hover { color: $main-red; }
-                }
-            }
-        }
-    }
-
+<style src="@app-sass/pages/home.scss"
+    lang="scss"
+    scoped >
+    
 </style>

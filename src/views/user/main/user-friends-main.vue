@@ -6,7 +6,8 @@
             <span>{{ friends.length }}</span>
         </h3>
 
-        <div v-if="friends.length" class="user__page-friends-list">
+        <div v-if="friends.length" 
+            class="user__page-friends-block" >
 
             <template v-for="(item, index) in friends" 
                 :key="index" >
@@ -48,41 +49,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-    .user__page-friends {
-        @include box-size(max-content, 200px);
+<style src="@app-sass/pages/user.scss" 
+    lang="scss" 
+    scoped >
 
-        h3 span { color: gray; }
-        &-list {
-            @include box-shadow-default;
-            @include flex-vertical;
-            gap: $sp_5;
-
-            padding: $sp_15;
-            margin: $sp_20 0;
-
-            .friends-list-item {
-                @include flex-default;
-                gap: $sp_10;
-                transition: $transition;
-
-                img {
-                    @include box-size(42px, 42px);
-                    border-radius: 50%;
-                }
-                a {
-                    font-size: $font_size_xs;
-                    transition: $transition;
-
-                    &:hover {
-                        cursor: pointer;
-                        color: $main_red;
-                    }
-                }
-            }
-        }
-    }
-    .no-image {
-        border: 2px solid $black;
-    }
 </style>

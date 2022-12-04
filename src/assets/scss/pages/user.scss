@@ -1,3 +1,9 @@
+/*
+    SCREEN: /user/:id/
+    USER-SCREEN-MAIN
+    component: @views/user/main/user-screen-main.vue
+*/
+
 .user__page-main {
     width: 100%;
 
@@ -6,5 +12,325 @@
         gap: $sp_20;
 
         margin-top: $sp_20;
+    }
+}
+
+/*
+    SCREEN: /user/:id/
+    USER-TOP-MAIN
+    component: @views/user/main/user-top-main.vue
+*/
+
+.user__page-main-top {
+    display: flex;
+    gap: $sp_20;
+
+    img { 
+        @include box-size(200px, 200px);
+        @include box-shadow-default;
+    }
+
+    .main-top-photo {
+
+        button {
+            @include default-btn(5px, 10px);
+            @include box-size(auto, 100%);
+            @include icon(25px);
+            gap: $sp_5;
+        }
+
+        &-another-user {
+            @include flex-default;
+            justify-content: space-between;
+            gap: $sp_10;
+
+            button { @include default-btn(5px, 10px); }
+        }
+    }
+
+    .main-top-info {
+        @include flex-vertical;
+        @include box-size(auto, 100%);
+        justify-content: space-between;
+
+        &-status {
+            .status-default,
+            .status-change {
+                display: flex;
+                align-items: center;
+                gap: $sp_10;
+
+                input {
+                    @include btn-input;
+                    width: 100%;
+                }
+                button {
+                    @include btn-input;
+                    cursor: pointer;
+                    transition: $transition;
+
+                    &:hover { color: $main_red }
+                }
+                &-btn { display: none; }
+            }
+            &:hover {
+                .status-change-btn,
+                .status-default-btn { display: block; }
+            }
+            .status {
+                font-size: $font_size_xs;
+                color: gray;
+                width: 100%; 
+            }
+        }
+
+        &-bio {
+            margin-top: $sp_10;
+            font-size: $font_size_xs;
+            
+            span { color: gray }
+        }
+
+        &-photos {
+            &-header {
+                @include flex-default;
+                justify-content: space-between;
+
+                button {
+                    @include btn-input;
+                    cursor: pointer;
+                    transition: $transition;
+
+                    &:hover { color: $main_red; }
+                }
+            }
+            &-list {
+                @include box-size(100px, 405px);
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+
+                gap: $sp_5;
+                margin-top: $sp_5;
+                overflow: hidden;
+                .photo__item {
+                    @include box-size(100px, auto);
+                    cursor: pointer;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    overflow: hidden;
+                    background-color: $black;
+                    
+                    img { @include box-size(135px, max-content); }
+                }
+            }
+
+            .list_one {
+                grid-template-columns: 1fr;
+                .photo__item {
+                    @include box-size(300px, 100%);
+                    img { @include box-size(auto, 100%); }
+                }
+            }
+            .list_two {
+                grid-template-columns: 1fr 1fr;
+            }
+            .list_three {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+    }
+}
+
+/*
+    SCREEN: /user/:id/
+    USER-LIST-MAIN
+    component: @views/user/main/user-list-main.vue
+*/
+
+.user__page-list {
+
+    @include list-transition;
+    width: 65%;
+
+    h3 { margin-bottom: $sp_20; }
+
+    .button-upload {
+        @include btn-input;
+        cursor: pointer;
+
+        font-size: 30px;
+        margin-right: $sp_10;
+        transition: $transition;
+
+        &:hover { color: $main_red; }
+    }
+    .photo_file {
+        @include box-size(200px, auto);
+    }
+    #file_upload { display: none }
+
+    &-content {
+        margin-top: $sp_10;
+    }
+}
+
+/*
+    SCREEN: /user/:id/
+    USER-GAMES-MAIN
+    component: @views/user/main/user-games-main.vue
+*/
+
+.user__page-games {
+    @include box-size(max-content, 200px);
+}
+
+/*
+    SCREEN: /user/:id/
+    USER-FRIENDS-MAIN
+    component: @views/user/main/user-friends-main.vue
+*/
+
+.user__page-friends {
+    @include box-size(max-content, 200px);
+
+    h3 span { color: gray; }
+    &-block {
+        @include box-shadow-default;
+        @include flex-vertical;
+        gap: $sp_5;
+
+        padding: $sp_15;
+        margin: $sp_20 0;
+
+        .friends-list-item {
+            @include flex-default;
+            gap: $sp_10;
+            transition: $transition;
+
+            img {
+                @include box-size(42px, 42px);
+                border-radius: 50%;
+            }
+            a {
+                font-size: $font_size_xs;
+                transition: $transition;
+
+                &:hover {
+                    cursor: pointer;
+                    color: $main_red;
+                }
+            }
+        }
+    }
+
+    .no-image {
+        border: 2px solid $black;
+    }
+}
+
+/*
+    SCREEN: /user/:id/feed
+    USER-SCREEN-FEED
+    component: @views/user/main/user-screen-feed.vue
+*/
+
+.user__page-feed {
+    @include box-size(auto, 100%);
+
+    &-content { display: flex;}
+    &-container {
+        @include box-size(auto, 100%);
+        margin-right: $sp_20;
+
+        h2 { margin-bottom: $sp_20; }
+    }
+    &-list { margin-top: $sp_10; }
+    &-tab-block {
+        position: sticky;
+    }
+}
+
+/*
+    SCREEN: /user/:id/friends
+    USER-SCREEN-FRIENDS
+    component: @views/user/main/user-screen-friends.vue
+*/
+
+.user__page-friends {
+    @include box-size(auto, 100%);
+    .user__page-friends-content { display: flex; }
+    .user_page-friends-container {
+        @include box-size(auto, 100%);
+        margin-right: $sp_20;
+
+        h2 { margin-bottom: $sp_20; }
+        .user__page-friends-list { margin-top: $sp_10; }
+    }
+}
+
+/*
+    SCREEN: /user/:id/photos
+    USER-SCREEN-PHOTOS
+    component: @views/user/main/user-screen-photos.vue
+*/
+
+.user__page-photos {
+    @include box-size(auto, 100%);
+
+    &-header {
+        @include flex-default;
+        justify-content: space-between;
+        margin-bottom: $sp_20;
+
+        span {
+            font-size: $font_size_xs;
+            color: gray;
+        }
+    }
+    &-list {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: auto auto auto;
+
+        row-gap: $sp_10;
+        column-gap: $sp_10;
+
+        .photo-item {
+            @include box-size(150px, auto);
+            @include flex-default;
+            justify-content: center;
+
+            cursor: pointer;
+            overflow: hidden;
+            background-color: $black;
+
+            img { @include box-size(inherit, auto); }
+        }
+    }
+}
+
+/*
+    SCREEN: /user/:id/settings
+    USER-SCREEN-SETTINGS
+    component: @views/user/main/user-screen-settings.vue
+*/
+
+.user__page-settings {
+    @include box-size(auto, 100%);
+
+    h2 { margin-bottom: $sp_20; }
+    &-fields {
+        @include box-size(auto, 50%);
+    }
+    &-controller {
+        @include flex-default;
+        gap: $sp_10;
+
+        button {
+            @include default-btn(10px, 10px);
+        }
     }
 }

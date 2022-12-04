@@ -1,3 +1,8 @@
+/*
+    SHOP-ITEM-SCREEN
+    component: @views/shop-item/shop-item-screen.vue
+*/
+
 .shop-item-page {
     width: $default_app_container;
     margin: $sp_20 auto $sp_20;
@@ -6,5 +11,121 @@
         @include box-size(auto, 100%);
 
         display: flex;
+    }
+}
+
+/*
+    SHOP-ITEM-TOP
+    component: @views/shop-item/shop-item-top.vue
+*/
+
+.shop-item-top {
+    @include box-shadow-default;
+    @include icon(20px);
+    display: flex;
+
+    margin-bottom: $sp_20;
+    color: $white;
+    background-color: $black;
+
+    .shop-item-top-right {
+        @include flex-vertical;
+        justify-content: space-between;
+
+        padding: $sp_15;
+    }
+
+    &-info {
+        h3 {
+
+            font-size: 30px;
+            text-transform: uppercase;
+
+            padding-bottom: $sp_10;
+            margin-bottom: $sp_10;
+
+            color: $main_red;
+            border-bottom: 2px solid $main_red;
+        }
+        p { font-size: $font_size_xs;}
+    }
+
+    &-controller {
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+            @include default-btn(15px, 10px);
+
+            font-size: 15px;
+            gap: 10px;
+
+            border: 2px solid $white;
+
+            &:hover {
+                gap: 15px;
+                border-color: $main_red;
+            }
+        }
+    }
+
+    img { @include box-size(300px, 550px); }
+}
+
+/*
+    SHOP-ITEM-CONTENT
+    component: @views/shop-item/shop-item-content.vue
+*/
+
+.shop-item-content {
+    @include box-size(100%, 50%);
+
+    &-top {
+        @include list-style(row, 15px);
+        font-weight: 500;
+
+        &-item { cursor: pointer; }
+    }
+
+    .active {
+        border-bottom: 2px solid $main_red;
+    
+        padding-bottom: $sp_10;
+        margin-bottom: $sp_10;
+        
+        color: $main_red;
+    }
+}
+
+/*
+    SHOP-ITEM-ALBUM
+    component: @views/shop-item/shop-item-album.vue
+*/
+
+.shop-item-album-wrapper {
+    @include box-size(100%, 100%); 
+
+    .shop-item-album {
+        @include box-size(100%, 100%);
+        
+        display: flex;
+        flex-wrap: wrap;
+        gap: $sp_10;
+    
+        &-item {
+            cursor: pointer;
+            @include box-size(150px, 250px);
+    
+            img { @include box-size(100%, 100%); }
+        }
+    }
+    
+    .title {
+        @include box-size(100%, 100%);
+    
+        font-size: $font_size_m;
+        font-weight: 500;
+    
+        margin-bottom: $sp_20;
     }
 }

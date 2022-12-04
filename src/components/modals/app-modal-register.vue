@@ -44,6 +44,7 @@
 import appModalContainer from '@components/use/app-modal-container.vue';
 import appInput from '@components/fields/app-input.vue';
 import modal from '@mixins/modal.js'
+import { USER_REGISTER } from '@store/actions/auth-actions';
 
 export default {
     mixins: [modal],
@@ -61,7 +62,7 @@ export default {
     },
     methods: {
         async register() {
-            await this.$store.dispatch('userRegister', this.form)
+            await this.$store.dispatch(USER_REGISTER, this.form)
                 .then(({ token }) => {
 
                     localStorage.setItem('token', token)

@@ -1,9 +1,8 @@
 <template>
-    <button
-        @click="scrollToTop"
+    <button @click="scrollToTop"
         class="scroll-arrow"
-        :class="{ 'scroll-arrow-hide': vision }"
-    >
+        :class="{ 'scroll-arrow-hide': vision }" >
+
         <icon icon="arrow-up-short"/>
     </button>
 </template>

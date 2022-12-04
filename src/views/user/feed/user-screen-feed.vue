@@ -38,6 +38,7 @@ import appReviewsField from '@components/fields/app-reviews-field.vue';
 import appPostItem from '@components/blocks/app-post-item.vue';
 import likesAndFavorites from '@mixins/likesAndFavorites';
 import pagination from '@mixins/pagination';
+import * as ACTION from '@store/actions/feed-actions'
 
 
 export default {
@@ -74,16 +75,16 @@ export default {
 
             switch (type) {
                 case "new":
-                    this.getPostsByType("getNewFeed");
+                    this.getPostsByType(ACTION.GET_NEW_FEED);
                         break;
                 case "friends":
-                    this.getPostsByType("getFriendFeed");
+                    this.getPostsByType(ACTION.GET_FRIEND_FEED);
                         break;
                 case "popularity":
-                    this.getPostsByType("getPopularityFeed");
+                    this.getPostsByType(ACTION.GET_POPULARITY_FEED);
                         break;
                 case "favorite":
-                    this.getPostsByType("getFavoriteFeed");
+                    this.getPostsByType(ACTION.GET_FAVORITE_FEED);
                         break;
                 default:
                     break;
@@ -121,20 +122,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-    .user__page-feed {
-        @include box-size(auto, 100%);
+<style src="@app-sass/pages/user.scss" 
+    lang="scss" 
+    scoped >
 
-        &-content { display: flex;}
-        &-container {
-            @include box-size(auto, 100%);
-            margin-right: $sp_20;
-
-            h2 { margin-bottom: $sp_20; }
-        }
-        &-list { margin-top: $sp_10; }
-        &-tab-block {
-            position: sticky;
-        }
-    }
 </style>

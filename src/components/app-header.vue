@@ -61,6 +61,8 @@ import AppDropdownModal from "@components/modals/app-dropdown-modal.vue";
 import AppSearchDropdown from "@components/modals/app-search-dropdown.vue";
 import AppModalLogin from "@components/modals/app-modal-login.vue"
 import AppModalRegister from "@components/modals/app-modal-register.vue"
+import { USER_LOGOUT } from "@store/actions/auth-actions";
+import { SEARCH_GAME } from "@store/actions/games-actions";
 
 import { mapGetters } from 'vuex';
 
@@ -108,7 +110,7 @@ export default {
         async search(query) {
             this.focus = false
             
-            this.$store.dispatch('searchGame', { query: query })
+            this.$store.dispatch(SEARCH_GAME, { query: query })
                 .then((data) => {
 
                     this.games = (query) ? data : []
@@ -134,7 +136,7 @@ export default {
             }
         },
         async logout() {
-            await this.$store.dispatch("userLogout")
+            await this.$store.dispatch(USER_LOGOUT)
                 .then(() => {
 
                     localStorage.removeItem('token')

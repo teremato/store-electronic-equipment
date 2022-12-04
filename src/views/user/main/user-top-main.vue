@@ -113,8 +113,10 @@
 </template>
 
 <script>
-import appPhotoUploadModal from "@/components/modals/app-photo-upload-modal.vue"
+import appPhotoUploadModal from "@components/modals/app-photo-upload-modal.vue"
 import appEmptyBlock from "@components/blocks/app-empty-block.vue" 
+import { CHANGE_STATUS } from "@store/actions/user-actions";
+import { ADD_FRIEND } from "@store/actions/friends-actions";
 import { mapGetters } from 'vuex';
 
 
@@ -149,7 +151,7 @@ export default {
         },
         async changeStatus() {
 
-            await this.$store.dispatch("changeStatus", {
+            await this.$store.dispatch(CHANGE_STATUS, {
                 status: this.status
             })
             .then(({ status }) => {
@@ -160,7 +162,7 @@ export default {
         },
         async addFriend() {
 
-            await this.$store.dispatch("addFriend", { id: this.user.id })
+            await this.$store.dispatch(ADD_FRIEND, { id: this.user.id })
                 .then(() => {
                     this.$emit("user:add");
                 })
@@ -207,127 +209,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-    .user__page-main-top {
-        display: flex;
-        gap: $sp_20;
-
-        img { 
-            @include box-size(200px, 200px);
-            @include box-shadow-default;
-        }
-
-        .main-top-photo {
-
-            button {
-                @include default-btn(5px, 10px);
-                @include box-size(auto, 100%);
-                @include icon(25px);
-                gap: $sp_5;
-            }
-
-            &-another-user {
-                @include flex-default;
-                justify-content: space-between;
-                gap: $sp_10;
-
-                button { @include default-btn(5px, 10px); }
-            }
-        }
-
-        .main-top-info {
-            @include flex-vertical;
-            @include box-size(auto, 100%);
-            justify-content: space-between;
-
-            &-status {
-                .status-default,
-                .status-change {
-                    display: flex;
-                    align-items: center;
-                    gap: $sp_10;
-
-                    input {
-                        @include btn-input;
-                        width: 100%;
-                    }
-                    button {
-                        @include btn-input;
-                        cursor: pointer;
-                        transition: $transition;
-    
-                        &:hover { color: $main_red }
-                    }
-                    &-btn { display: none; }
-                }
-                &:hover {
-                    .status-change-btn,
-                    .status-default-btn { display: block; }
-                }
-                .status {
-                    font-size: $font_size_xs;
-                    color: gray;
-                    width: 100%; 
-                }
-            }
-
-            &-bio {
-                margin-top: $sp_10;
-                font-size: $font_size_xs;
-                
-                span { color: gray }
-            }
-
-            &-photos {
-                &-header {
-                    @include flex-default;
-                    justify-content: space-between;
-
-                    button {
-                        @include btn-input;
-                        cursor: pointer;
-                        transition: $transition;
-
-                        &:hover { color: $main_red; }
-                    }
-                }
-                &-list {
-                    @include box-size(100px, 405px);
-                    display: grid;
-                    grid-template-columns: 1fr 1fr 1fr 1fr;
-
-                    gap: $sp_5;
-                    margin-top: $sp_5;
-                    overflow: hidden;
-                    .photo__item {
-                        @include box-size(100px, auto);
-                        cursor: pointer;
-
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-
-                        overflow: hidden;
-                        background-color: $black;
-                        
-                        img { @include box-size(135px, max-content); }
-                    }
-                }
-
-                .list_one {
-                    grid-template-columns: 1fr;
-                    .photo__item {
-                        @include box-size(300px, 100%);
-                        img { @include box-size(auto, 100%); }
-                    }
-                }
-                .list_two {
-                    grid-template-columns: 1fr 1fr;
-                }
-                .list_three {
-                    grid-template-columns: 1fr 1fr 1fr;
-                }
-            }
-        }
-    }
+<style src="@app-sass/pages/user.scss" 
+    lang="scss"
+    scoped >
 </style>

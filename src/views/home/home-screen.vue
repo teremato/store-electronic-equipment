@@ -35,6 +35,7 @@ import appHomeSlider from '@components/swiper/app-home-slider.vue'
 import homeSidebar from "@views/home/home-sidebar.vue";
 import HomeContentBlock from "@views/home/home-content-block.vue";
 import homeRecommendBlock from "@views/home/home-recommend-block.vue";
+import { GET_GAMES } from '@store/actions/games-actions';
 
 export default {
     name: 'home-page',
@@ -66,14 +67,14 @@ export default {
         },
 
         async getSlides() {
-            await this.$store.dispatch('getGames', { sort: 'title', per_page: 4 })
+            await this.$store.dispatch(GET_GAMES, { sort: 'title', per_page: 4 })
                 .then(({ data }) => {
                     this.slides = data;
                 })
         },
 
         async getShopItems() {
-            await this.$store.dispatch('getGames', { sort: this.filterType})
+            await this.$store.dispatch(GET_GAMES, { sort: this.filterType})
                 .then(({ data }) => {
                     this.shopItems = data;
                 })

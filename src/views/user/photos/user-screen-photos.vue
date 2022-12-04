@@ -24,6 +24,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { GET_USER_MEDIA } from '@store/actions/media-actions';
 
 
 export default {
@@ -37,7 +38,8 @@ export default {
     },
     methods: {
         async getUserPhotos() {
-            await this.$store.dispatch("getUserMedia", {
+            
+            await this.$store.dispatch(GET_USER_MEDIA, {
                 id: this.$route.params.id
             })
             .then(({ data }) => {
@@ -54,39 +56,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-    .user__page-photos {
-        @include box-size(auto, 100%);
-
-        &-header {
-            @include flex-default;
-            justify-content: space-between;
-            margin-bottom: $sp_20;
-
-            span {
-                font-size: $font_size_xs;
-                color: gray;
-            }
-        }
-        &-list {
-            display: grid;
-            grid-template-columns: auto auto auto;
-            grid-template-rows: auto auto auto;
-
-            row-gap: $sp_10;
-            column-gap: $sp_10;
-
-            .photo-item {
-                @include box-size(150px, auto);
-                @include flex-default;
-                justify-content: center;
-
-                cursor: pointer;
-                overflow: hidden;
-                background-color: $black;
-
-                img { @include box-size(inherit, auto); }
-            }
-        }
-    }
+<style src="@app-sass/pages/user.scss" 
+    lang="scss" 
+    scoped >
 </style>

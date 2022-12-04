@@ -15,6 +15,7 @@
 import ShopItemTop from "@views/shop-item/shop-item-top.vue";
 import ShopItemAlbum from "@views/shop-item/shop-item-album.vue";
 import ShopItemContent from "@views/shop-item/shop-item-content.vue";
+import { GET_GAME_ITEM } from "@store/actions/games-actions";
 
 export default {
     name: "shop-item",
@@ -38,7 +39,7 @@ export default {
     methods: {
         async getGameItem(slug) {
 
-            await this.$store.dispatch('getGameItem', { slug: slug })
+            await this.$store.dispatch(GET_GAME_ITEM, { slug: slug })
                 .then(({ game }) => {
                     this.item = game;
                 })

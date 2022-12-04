@@ -27,29 +27,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style src="@app-sass/pages/shop-item.scss" 
+    lang="scss" 
+    scoped >
 
-    .shop-item-album-wrapper { @include box-size(100%, 100%); }
-    .shop-item-album {
-        @include box-size(100%, 100%);
-        
-        display: flex;
-        flex-wrap: wrap;
-        gap: $sp_10;
-
-        &-item {
-            cursor: pointer;
-            @include box-size(150px, 250px);
-
-            img { @include box-size(100%, 100%); }
-        }
-    }
-    .title {
-        @include box-size(100%, 100%);
-
-        font-size: $font_size_m;
-        font-weight: 500;
-
-        margin-bottom: $sp_20;
-    }
 </style>

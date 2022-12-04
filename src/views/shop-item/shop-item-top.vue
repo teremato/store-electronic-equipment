@@ -32,59 +32,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style src="@app-sass/pages/shop-item.scss" 
+    lang="scss"
+    scoped >
 
-    @include icon(20px);
-
-    .shop-item-top {
-        @include box-shadow-default;
-        display: flex;
-
-        margin-bottom: $sp_20;
-        color: $white;
-        background-color: $black;
-
-        .shop-item-top-right {
-            @include flex-vertical;
-            justify-content: space-between;
-
-            padding: $sp_15;
-        }
-
-        &-info {
-            h3 {
-
-                font-size: 30px;
-                text-transform: uppercase;
-
-                padding-bottom: $sp_10;
-                margin-bottom: $sp_10;
-
-                color: $main_red;
-                border-bottom: 2px solid $main_red;
-            }
-            p { font-size: $font_size_xs;}
-        }
-
-        &-controller {
-            display: flex;
-            justify-content: flex-end;
-
-            button {
-                @include default-btn(15px, 10px);
-
-                font-size: 15px;
-                gap: 10px;
-
-                border: 2px solid $white;
-
-                &:hover {
-                    gap: 15px;
-                    border-color: $main_red;
-                }
-            }
-        }
-
-        img { @include box-size(300px, 550px); }
-    }
 </style>

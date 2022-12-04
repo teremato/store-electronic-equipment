@@ -36,6 +36,10 @@
 
 <script>
 import appInput from '@components/fields/app-input.vue';
+import {
+    GET_USER_SETTINGS,
+    UPDATE_USER_SETTINGS
+} from '@store/actions/user-actions';
 
 export default {
     data() {
@@ -53,7 +57,7 @@ export default {
     },
     methods: {
         async getUserSettings() {
-            await this.$store.dispatch("getUserSettings")
+            await this.$store.dispatch(GET_USER_SETTINGS)
                 .then(({ data }) => {
                     this.form = data
                 })
@@ -65,7 +69,7 @@ export default {
 
             if(this.form.name !== '') {
 
-                await this.$store.dispatch("updateUserSettings", this.form)
+                await this.$store.dispatch(UPDATE_USER_SETTINGS, this.form)
                     .then(() => {})
                     .catch((error) => console.log(error))
             }
@@ -77,21 +81,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-    .user__page-settings {
-        @include box-size(auto, 100%);
-
-        h2 { margin-bottom: $sp_20; }
-        &-fields {
-            @include box-size(auto, 50%);
-        }
-        &-controller {
-            @include flex-default;
-            gap: $sp_10;
-
-            button {
-                @include default-btn(10px, 10px);
-            }
-        }
-    }
+<style src="@app-sass/pages/user.scss"
+    lang="scss" 
+    scoped >
 </style>

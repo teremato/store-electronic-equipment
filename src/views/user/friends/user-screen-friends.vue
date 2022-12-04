@@ -27,10 +27,14 @@
 </template>
 
 <script>
-import appTabBlock from '@/components/blocks/app-tab-block.vue';
-import appInput from '@/components/fields/app-input.vue';
-import appFriendItem from '@/components/blocks/app-friend-item.vue';
+import appTabBlock from '@components/blocks/app-tab-block.vue';
+import appInput from '@components/fields/app-input.vue';
+import appFriendItem from '@components/blocks/app-friend-item.vue';
 import { mapGetters } from 'vuex';
+import { 
+    GET_USER_FRIENDS,
+    GET_ACCEPT_FRIENDS 
+} from '@store/actions/friends-actions';
 
 export default {
     data() {
@@ -65,14 +69,14 @@ export default {
         },
         async getUserFriends() {
 
-            await this.$store.dispatch("getUserFriends", { id: this.userId })
+            await this.$store.dispatch(GET_USER_FRIENDS, { id: this.userId })
                 .then(({ data }) => {
                     this.friends = data;
                 })
         },
         async getAcceptFriends() {
 
-            await this.$store.dispatch("getAcceptFriends")
+            await this.$store.dispatch(GET_ACCEPT_FRIENDS)
                 .then(({ data }) => {
                     this.friendsAccept = data
                 })
@@ -109,16 +113,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-    .user__page-friends {
-        @include box-size(auto, 100%);
-        .user__page-friends-content { display: flex; }
-        .user_page-friends-container {
-            @include box-size(auto, 100%);
-            margin-right: $sp_20;
-    
-            h2 { margin-bottom: $sp_20; }
-            .user__page-friends-list { margin-top: $sp_10; }
-        }
-    }
+<style src="@app-sass/pages/user.scss" 
+    lang="scss" 
+    scoped >
 </style>

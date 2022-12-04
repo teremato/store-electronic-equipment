@@ -61,6 +61,10 @@
 import appDropdownModal from '@components/modals/app-dropdown-modal.vue'
 import moment from 'moment'
 import { mapGetters } from 'vuex'
+import { 
+    LIKE_POST, 
+    ADD_FAVORITE_POST 
+} from '@/store/actions/posts-actions'
 
 export default {
     props: {
@@ -83,7 +87,7 @@ export default {
         },
         async setLike() {
 
-            await this.$store.dispatch("likePost", { id: this.post.id })
+            await this.$store.dispatch(LIKE_POST, { id: this.post.id })
                 .then(() => {
                     this.$emit("post:like", this.post.id)
                 })
@@ -91,7 +95,7 @@ export default {
         },
         async setFavorite() {
             
-            await this.$store.dispatch("addFavoritePost", { id: this.post.id })
+            await this.$store.dispatch(ADD_FAVORITE_POST, { id: this.post.id })
                 .then(() => {
                     this.$emit("post:favorite", this.post.id)
                 })

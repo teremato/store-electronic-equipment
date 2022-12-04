@@ -12,7 +12,9 @@
             </li>
         </ul>
 
-        <component :is="getCurrentBlock(currentBlock)" :items="data" />
+        <component :is="getCurrentBlock(currentBlock)" 
+            :items="data" />
+            
     </div>
 </template>
 

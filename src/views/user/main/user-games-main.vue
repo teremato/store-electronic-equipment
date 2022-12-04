@@ -25,8 +25,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-    .user__page-games {
-        @include box-size(max-content, 200px);
-    }
+<style src="@app-sass/pages/user.scss" 
+    lang="scss" 
+    scoped >
 </style>

@@ -22,6 +22,7 @@ import userTopMain from "@views/user/main/user-top-main.vue"
 import userFriendsMain from '@views/user/main/user-friends-main.vue'
 import userListMain from '@views/user/main/user-list-main.vue'
 import userGamesMain from "@views/user/main/user-games-main.vue"
+import { GET_USER_BY_ID } from "@store/actions/user-actions"
 
 export default {
     data() {
@@ -35,7 +36,7 @@ export default {
     methods: {
         async getUser(id) {
 
-            await this.$store.dispatch("getUserById", id)
+            await this.$store.dispatch(GET_USER_BY_ID, id)
                 .then((data) => {
                     this.user = data
                 })

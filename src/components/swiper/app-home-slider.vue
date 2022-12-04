@@ -1,8 +1,7 @@
 <template>
 
     <div class="home__swiper">
-        <Swiper
-            :modules="swiper.modules"
+        <Swiper :modules="swiper.modules"
             :navigation="swiper.navigation"
             :pagination="swiper.pagination"
             :autoplay="swiper.autoplay"

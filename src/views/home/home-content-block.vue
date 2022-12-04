@@ -11,7 +11,8 @@
             </li>
         </ul>
 
-        <div class="home__page-content-content" :class="{'active-block': changeFilter}">
+        <div class="home__page-content-content" 
+            :class="{'active-block': changeFilter}" >
 
             <template v-for="(item, index) in data" :key="index">
                 <app-shop-item-block :item="item"/>
