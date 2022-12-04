@@ -26,16 +26,24 @@
                 </div>
             </template>
         </div>
+        <div v-else>
+            <app-empty-block label="У вас пока нет друзей :(" />
+        </div>
     </div>
 </template>
 
 <script>
+import appEmptyBlock from '@components/blocks/app-empty-block.vue';
+
 export default {
     props: {
         friends: {
             type: Array,
             default: () => []
         }
+    },
+    components: {
+        appEmptyBlock
     }
 }
 </script>

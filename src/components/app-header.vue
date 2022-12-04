@@ -33,7 +33,7 @@
                     <button @click="() => this.$refs.userOption.open()"
                         class="user_profile" >
                         
-                        <icon icon="person-circle"/>
+                        <icon icon="person-circle" />
                     </button>
 
                     <app-dropdown-modal ref="userOption"
@@ -247,6 +247,13 @@ export default {
 
         &:hover {
             color: $main_red;
+        }
+    }
+
+    .user_profile {
+        img { 
+            @include box-size(32px, 32px);
+            border-radius: 50%;
         }
     }
 }

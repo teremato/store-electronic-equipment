@@ -26,7 +26,9 @@
             <div class="user__page-settings-controller">
 
                 <button>Отмена</button>
-                <button>Сохранить</button>
+                <button @click="changeUserSettings">
+                    Сохранить
+                </button>
             </div>
         </div>
     </div>
@@ -40,12 +42,35 @@ export default {
         return {
             form: {
                 name: '',
-                nickname: '',
+                username: '',
                 country: '',
                 favorite_game: '',
             }
         }
-    },  
+    },
+    created() {
+        this.getUserSettings();
+    },
+    methods: {
+        async getUserSettings() {
+            await this.$store.dispatch("getUserSettings")
+                .then(({ data }) => {
+                    this.form = data
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
+        async changeUserSettings() {
+
+            if(this.form.name !== '') {
+
+                await this.$store.dispatch("updateUserSettings", this.form)
+                    .then(() => {})
+                    .catch((error) => console.log(error))
+            }
+        }
+    },
     components: {
         appInput
     }

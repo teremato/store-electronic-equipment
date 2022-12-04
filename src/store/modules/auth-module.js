@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { $api } from "@services/axios-rest-client";
+import * as actions from "@store/actions/auth-actions"
 
 
 export default {
@@ -20,7 +21,7 @@ export default {
         },
     },
     actions: {
-        async userLogin({ commit }, form)  {
+        async [actions.USER_LOGIN]({ commit }, form)  {
             return await $api.post('/auth/login', form)
                 .then(({ data }) => {
 
@@ -30,7 +31,7 @@ export default {
                     return data
                 })
         },
-        async userRegister({ commit }, form) {
+        async [actions.USER_REGISTER]({ commit }, form) {
             return $api.post('/auth/registration', form)
                 .then(({ data }) => {
 
@@ -40,7 +41,7 @@ export default {
                     return data 
                 })
         },
-        async userLogout({ commit }) {
+        async [actions.USER_LOGOUT]({ commit }) {
             await $api.post('auth/logout')
                 .then(() => {
 

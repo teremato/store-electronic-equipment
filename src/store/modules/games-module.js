@@ -1,22 +1,23 @@
 /* eslint-disable no-unused-vars */
 import { $api } from "@services/axios-rest-client";
+import * as actions from "@store/actions/games-actions"
 
 
 export default {
     actions: {
-        async getGames({ commit }, params = {}) {
+        async [actions.GET_GAMES]({ commit }, params = {}) {
             return await $api.get('/games', { params: params })
                 .then(({ data }) => { return data })
         },
-        async getGameItem({ commit }, { slug }) {
+        async [actions.GET_GAME_ITEM]({ commit }, { slug }) {
             return await $api.get(`/games/${slug}`)
                 .then(({ data }) => { return data })
         },
-        async getGameItemAlbum({ commit }, { slug }) {
+        async [actions.GET_GAME_ITEM_ALBUM]({ commit }, { slug }) {
             return await $api.get(`/games/album/${slug}`)
                 .then(({ data }) => { return data })
         },
-        async searchGame({ commit }, params = {}) {
+        async [actions.SEARCH_GAME]({ commit }, params = {}) {
             return await $api.get('/search', { params: params })
                 .then(({ data }) => { return data })
         }

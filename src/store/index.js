@@ -1,12 +1,12 @@
 import { createStore } from 'vuex'
 
-import GamesModule from "@store/games-module";
-import UserModule from '@store/user-module';
-import AuthModule from '@store/auth-module';
-import MediaModule from '@store/media-module';
-import PostsModule from '@store/posts-module';
-import friendModule from '@store/friend-module';
-import feedModule from '@store/feed-module';
+import GamesModule from "@store/modules/games-module";
+import UserModule from '@/store/modules/user-module';
+import AuthModule from '@/store/modules/auth-module';
+import MediaModule from '@/store/modules/media-module';
+import PostsModule from '@store/modules/posts-module';
+import friendModule from '@store/modules/friend-module';
+import feedModule from '@store/modules/feed-module';
 
 
 export default createStore({

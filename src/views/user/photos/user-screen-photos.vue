@@ -69,17 +69,20 @@ export default {
             }
         }
         &-list {
-            @include flex-default;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-template-rows: auto auto auto;
 
             row-gap: $sp_10;
             column-gap: $sp_10;
 
             .photo-item {
                 @include box-size(150px, auto);
+                @include flex-default;
+                justify-content: center;
+
                 cursor: pointer;
                 overflow: hidden;
-
                 background-color: $black;
 
                 img { @include box-size(inherit, auto); }

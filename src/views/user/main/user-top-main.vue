@@ -61,6 +61,18 @@
                         </button>
                     </div>
                 </div>
+                <div class="main-top-info-bio">
+                    <div v-if="user.country" >
+
+                        <span>Страна:</span>
+                        {{ user.country }}
+                    </div>
+                    <div v-if="user.favorite_game" >
+
+                        <span>Любимая игра:</span>
+                        {{ user.favorite_game }}
+                    </div>
+                </div>
             </div>
             <div class="main-top-info-photos">
                 <div class="main-top-info-photos-header">
@@ -73,13 +85,19 @@
                     </button>
 
                 </div>
-                <div class="main-top-info-photos-list">
+                <div v-if="user.media" 
+                    class="main-top-info-photos-list"
+                    :class="userPhotosClass" >
+
                     <template v-for="(item, index) in user.media" :key="index">
                         <div class="photo__item">
 
                             <img :src="item.image" alt>
                         </div>
                     </template>
+                </div>
+                <div v-else>
+                    <app-empty-block label="У вас пока нету фотографий :(" />
                 </div>
             </div>
         </div>
@@ -96,6 +114,7 @@
 
 <script>
 import appPhotoUploadModal from "@/components/modals/app-photo-upload-modal.vue"
+import appEmptyBlock from "@components/blocks/app-empty-block.vue" 
 import { mapGetters } from 'vuex';
 
 
@@ -155,6 +174,25 @@ export default {
         ...mapGetters({
             userId: 'userId',
         }),
+        userPhotosClass() {
+            
+            if(this.user.media) {
+                
+                let mediaLength = this.user.media.length
+    
+                switch(mediaLength) {
+                    case 1:
+                        return 'list_one'
+                    case 2:
+                        return 'list_two'
+                    case 3: 
+                        return 'list_three'
+                    default:
+                        return ''
+                }
+            }
+            return '';
+        },
         checkIsUserPage() {
             return (this.userId == this.$route.params.id) ? true : false
         },
@@ -163,7 +201,8 @@ export default {
         }
     },
     components: {
-        appPhotoUploadModal
+        appPhotoUploadModal,
+        appEmptyBlock
     }
 }
 </script>
@@ -232,6 +271,13 @@ export default {
                 }
             }
 
+            &-bio {
+                margin-top: $sp_10;
+                font-size: $font_size_xs;
+                
+                span { color: gray }
+            }
+
             &-photos {
                 &-header {
                     @include flex-default;
@@ -247,15 +293,18 @@ export default {
                 }
                 &-list {
                     @include box-size(100px, 405px);
-                    display: flex;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+
                     gap: $sp_5;
                     margin-top: $sp_5;
                     overflow: hidden;
                     .photo__item {
-                        @include box-size(100px, 33.3%);
+                        @include box-size(100px, auto);
                         cursor: pointer;
 
                         display: flex;
+                        align-items: center;
                         justify-content: center;
 
                         overflow: hidden;
@@ -263,6 +312,20 @@ export default {
                         
                         img { @include box-size(135px, max-content); }
                     }
+                }
+
+                .list_one {
+                    grid-template-columns: 1fr;
+                    .photo__item {
+                        @include box-size(300px, 100%);
+                        img { @include box-size(auto, 100%); }
+                    }
+                }
+                .list_two {
+                    grid-template-columns: 1fr 1fr;
+                }
+                .list_three {
+                    grid-template-columns: 1fr 1fr 1fr;
                 }
             }
         }
