@@ -1,13 +1,18 @@
 <template>
     
     <div class="layout">
-        <app-header ref="app-header" />
-            <router-view/>
+        
+        <app-header />
+            <router-view />
         <app-footer />
+
+        <notifications position="bottom right" />
     </div>
 </template>
 
 <script>
+import { GET_USER } from '@store/actions/user-actions';
+
 
 export default {
     name: 'app',
@@ -15,7 +20,7 @@ export default {
 
         const token = localStorage.getItem('token');
 
-        await this.$store.dispatch('getUser', token)
+        await this.$store.dispatch(GET_USER, token)
     },
 }
 </script>

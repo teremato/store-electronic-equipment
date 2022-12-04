@@ -28,7 +28,7 @@ export default {
                 { name: 'Моя страница', route: '/', icon: 'person-circle'},
                 { name: 'Лента', route: '/feed', icon: 'newspaper'},
                 { name: 'Друзья', route: '/friends', icon: 'person-lines-fill' },
-                { name: 'Мои игры', route: '/', icon: 'mouse3'},
+                { name: 'Мои игры', route: '/games', icon: 'mouse3'},
                 { name: 'Мои фотки', route: '/photos', icon: 'images'},
                 // { name: 'Сообщества', route: '/', icon: 'people'},
                 { name: 'Настройки', route: '/settings', icon: 'nut' },

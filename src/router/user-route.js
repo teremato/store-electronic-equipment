@@ -28,6 +28,11 @@ export default {
             path: ':id/settings',
             name: 'Настройки',
             component: () => import("@views/user/settings/user-screen-settings")
+        },
+        {
+            path: ':id/games',
+            name: 'Игры',
+            component: () => import("@views/user/games/user-screen-games")
         }
     ]
 }
