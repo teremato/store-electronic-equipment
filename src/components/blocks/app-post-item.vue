@@ -26,7 +26,8 @@
                         icon="justify" />
 
                     <app-dropdown-modal ref="postOption"
-                        :items="postOption" />
+                        :items="postOption"
+                        @click:type="postController" />
 
                 </template>
             </div>
@@ -63,7 +64,8 @@ import moment from 'moment'
 import { mapGetters } from 'vuex'
 import { 
     LIKE_POST, 
-    ADD_FAVORITE_POST 
+    ADD_FAVORITE_POST,
+    REMOVE_POST
 } from '@/store/actions/posts-actions'
 
 export default {
@@ -85,21 +87,54 @@ export default {
         getDate(date) {
             return moment(date).locale('ru').fromNow()
         },
+        postController(event) {
+
+            switch(event) {
+                case "edit":
+                    break;
+                case "remove":
+                    this.removePost();
+                        break;
+            }
+        },
         async setLike() {
 
             await this.$store.dispatch(LIKE_POST, { id: this.post.id })
-                .then(() => {
+                .then(({ message }) => {
+
                     this.$emit("post:like", this.post.id)
+                    this.$notify({
+                        type: "success",
+                        title: message
+                    })
                 })
                 .catch((error) => console.log(error))
         },
         async setFavorite() {
             
             await this.$store.dispatch(ADD_FAVORITE_POST, { id: this.post.id })
-                .then(() => {
+                .then(({ message }) => {
+
                     this.$emit("post:favorite", this.post.id)
+                    this.$notify({
+                        type: "success",
+                        title: message 
+                    })
                 })
                 .catch((error) => console.log(error))
+        },
+        async removePost() {
+
+            await this.$store.dispatch(REMOVE_POST, { id: this.post.id })
+                .then(({ message }) => {
+
+                    this.$emit("post:remove", this.post.id)
+                    this.$notify({
+                        type: "success",
+                        title: message
+                    })
+                })
+                .catch((error) => console.log(error) )
         }
     },
     computed: {

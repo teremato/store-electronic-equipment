@@ -28,6 +28,12 @@ export default {
                 .then(({ data }) => {
                     return data
                 })
+        },
+        async [actions.REMOVE_POST]({ commit }, { id }) {
+            return await $api.delete(`/posts/delete/${id}`)
+                .then(({ data }) => {
+                    return data
+                })
         }
 
     }

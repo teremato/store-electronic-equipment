@@ -11,14 +11,20 @@
                     rows="7" />
 
                 <div class="user__page-feed-list">
-                    
-                    <template v-for="(item, index) in posts" :key="index" >
-                        <app-post-item ref="postItem"
-                            :post="item"
-                            @post:like="(event) => { this.changeLike(event, 'posts') }"
-                            @post:favorite="(event) => { this.changeFavorite(event, 'posts') }" />
+
+                    <app-loader :load="load" :isFullPage="false" />
+                       
+                    <transition-group name="list" tag="div">
+
+                        <template v-for="(item, index) in posts" :key="index" >
                             
-                    </template>
+                            <app-post-item :post="item"
+                                @post:like="(event) => { this.changeLike(event, 'posts') }"
+                                @post:favorite="(event) => { this.changeFavorite(event, 'posts') }"
+                                @post:remove="removePost" />
+                                
+                        </template>
+                    </transition-group>
 
                     <div ref="pagination"></div>
                 </div>
@@ -36,6 +42,7 @@
 import appTabBlock from '@components/blocks/app-tab-block.vue';
 import appReviewsField from '@components/fields/app-reviews-field.vue';
 import appPostItem from '@components/blocks/app-post-item.vue';
+import appLoader from '@components/use/app-loader.vue';
 import likesAndFavorites from '@mixins/likesAndFavorites';
 import pagination from '@mixins/pagination';
 import * as ACTION from '@store/actions/feed-actions'
@@ -57,7 +64,8 @@ export default {
             ],
             filter: '',
             posts: [],
-            trigger: false
+            trigger: false,
+            load: false
 
         }
     },
@@ -92,6 +100,8 @@ export default {
         },
         async getPostsByType(type) {
 
+            this.load = true
+
             await this.$store.dispatch(type, this.params)
                 .then(({ data }) => {
 
@@ -100,7 +110,13 @@ export default {
                 .catch((error) => {
                     console.log(error)
                 })
+                .finally(() => this.load = false)
         },
+        removePost(event) {
+            this.posts = this.posts.filter((item) => 
+                item.id !== event
+            )
+        }
     },
     watch: {
         "params.page": {
@@ -117,7 +133,8 @@ export default {
     components: {
         appTabBlock,
         appReviewsField,
-        appPostItem
+        appPostItem,
+        appLoader
     },
 }
 </script>

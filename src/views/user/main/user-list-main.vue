@@ -29,9 +29,11 @@
             <transition-group name="list" tag="div">
 
                 <template v-for="(item, index) in posts" :key="index">
+                    
                     <app-post-item :post="item"
                         @post:like="(event) => { this.changeLike(event, 'posts') }"
-                        @post:favorite="(event => { this.changeFavorite(event, 'posts') })" />
+                        @post:favorite="(event => { this.changeFavorite(event, 'posts') })"
+                        @post:remove="removePost" />
 
                 </template>
             </transition-group>
@@ -77,8 +79,13 @@ export default {
 
             await this.$store.dispatch(CREATE_POST, formData)
 
-                .then(({ post }) => {
+                .then(({ message, post }) => {
+
                     this.$emit("add:post", post);
+                    this.$notify({
+                        type: "success",
+                        title: message
+                    })
                 })
                 .catch((error) => console.log(error))
                 .finally(() => {
@@ -86,6 +93,9 @@ export default {
                     this.form.text = ""
                     this.form.photo = null
                 })
+        },
+        removePost(event) {
+            this.$emit("remove:post", event);
         }
     },
     components: {

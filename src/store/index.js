@@ -1,4 +1,4 @@
-import { createStore } from 'vuex'
+import { createStore,  } from 'vuex'
 
 import GamesModule from "@store/modules/games-module";
 import UserModule from '@/store/modules/user-module';
@@ -9,7 +9,7 @@ import friendModule from '@store/modules/friend-module';
 import feedModule from '@store/modules/feed-module';
 
 
-export default createStore({
+const store = createStore({
     state: {
     },
     getters: {
@@ -28,3 +28,5 @@ export default createStore({
         feedModule
     }
 })
+
+export default store

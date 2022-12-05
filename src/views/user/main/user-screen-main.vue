@@ -1,5 +1,5 @@
 <template>
-    <div class="user__page-main">
+    <div v-if="!load" class="user__page-main">
         <user-top-main :user="user"
             @upload:avatar="uploadAvatar"
             @upload:photo="uploadPhotos"
@@ -11,9 +11,12 @@
                 <user-games-main />
             </div>
             <user-list-main :posts="user.posts"
-                @add:post="addNewPost" />
+                @add:post="addNewPost"
+                @remove:post="removePost" />
         </div>
     </div>
+
+    <app-loader :load="load" />
 
 </template>
 
@@ -22,12 +25,14 @@ import userTopMain from "@views/user/main/user-top-main.vue"
 import userFriendsMain from '@views/user/main/user-friends-main.vue'
 import userListMain from '@views/user/main/user-list-main.vue'
 import userGamesMain from "@views/user/main/user-games-main.vue"
+import appLoader from "@/components/use/app-loader.vue"
 import { GET_USER_BY_ID } from "@store/actions/user-actions"
 
 export default {
     data() {
         return {
-            user: {}
+            user: {},
+            load: false
         }
     },
     created() {
@@ -36,11 +41,14 @@ export default {
     methods: {
         async getUser(id) {
 
+            this.load = true
+
             await this.$store.dispatch(GET_USER_BY_ID, id)
                 .then((data) => {
                     this.user = data
                 })
                 .catch((error) => console.log(error))
+                .finally(() => this.load = false )
         },
         uploadAvatar(event) {
             this.user.avatar = event
@@ -53,6 +61,11 @@ export default {
         },
         addNewPost(event) {
             this.user.posts.unshift(event)
+        },
+        removePost(event) {
+            this.user.posts = this.user.posts.filter((item) =>  
+                item.id !== event
+            )
         }
     },
     computed: {
@@ -61,7 +74,8 @@ export default {
         userTopMain,
         userFriendsMain,
         userListMain,
-        userGamesMain
+        userGamesMain,
+        appLoader
     }
 }
 </script>

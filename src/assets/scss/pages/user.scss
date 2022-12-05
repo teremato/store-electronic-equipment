@@ -174,6 +174,7 @@
 
     &-content {
         margin-top: $sp_10;
+        transition: $transition;
     }
 }
 
@@ -238,6 +239,7 @@
 */
 
 .user__page-feed {
+    @include list-transition;
     @include box-size(auto, 100%);
 
     &-content { display: flex;}
@@ -247,7 +249,10 @@
 
         h2 { margin-bottom: $sp_20; }
     }
-    &-list { margin-top: $sp_10; }
+    &-list {
+        position: relative;
+        margin-top: $sp_10;
+    }
     &-tab-block {
         position: sticky;
     }
@@ -267,7 +272,10 @@
         margin-right: $sp_20;
 
         h2 { margin-bottom: $sp_20; }
-        .user__page-friends-list { margin-top: $sp_10; }
+        .user__page-friends-list {
+            position: relative;
+            margin-top: $sp_10;
+        }
     }
 }
 
@@ -332,5 +340,22 @@
         button {
             @include default-btn(10px, 10px);
         }
+    }
+}
+
+/*
+    SCREEN: /user/:id/games
+    USER-SCREEN-GAMES
+    component: @views/user/main/user-screen-games.vue
+*/
+
+.user__games-page {
+    @include box-size(auto, 100%);
+
+    &-container {
+        display: flex;
+    }
+    &-list {
+        @include box-size(auto, 100%);
     }
 }

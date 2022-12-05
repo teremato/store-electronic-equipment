@@ -1,4 +1,5 @@
 export const CREATE_POST = "createPost";
+export const REMOVE_POST = "removePost"; 
 
 export const GET_USER_POST = "getUserPost";
 

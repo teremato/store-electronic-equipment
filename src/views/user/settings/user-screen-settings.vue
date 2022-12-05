@@ -31,11 +31,15 @@
                 </button>
             </div>
         </div>
+
+        <app-loader :load="load" />
+
     </div>
 </template>
 
 <script>
 import appInput from '@components/fields/app-input.vue';
+import appLoader from '@/components/use/app-loader.vue';
 import {
     GET_USER_SETTINGS,
     UPDATE_USER_SETTINGS
@@ -49,7 +53,8 @@ export default {
                 username: '',
                 country: '',
                 favorite_game: '',
-            }
+            },
+            load: false
         }
     },
     created() {
@@ -57,6 +62,9 @@ export default {
     },
     methods: {
         async getUserSettings() {
+
+            this.load = true
+
             await this.$store.dispatch(GET_USER_SETTINGS)
                 .then(({ data }) => {
                     this.form = data
@@ -64,6 +72,7 @@ export default {
                 .catch((error) => {
                     console.log(error)
                 })
+                .finally(() => this.load = false)
         },
         async changeUserSettings() {
 
@@ -76,7 +85,8 @@ export default {
         }
     },
     components: {
-        appInput
+        appInput,
+        appLoader
     }
 }
 </script>

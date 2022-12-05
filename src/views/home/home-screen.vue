@@ -1,6 +1,6 @@
 <template>
 
-    <div v-if="load" class="home-page">
+    <div v-if="!load" class="home-page">
 
         <div v-if="slides.length > 0" class="home-page_main-slider">
             <app-home-slider v-if="slides" :slides="slides"/>
@@ -24,13 +24,17 @@
             </div>
         </div>
 
+        
     </div>
+
+    <app-loader :load="load" />
 
 </template>
 
 <script>
 
 import appHomeSlider from '@components/swiper/app-home-slider.vue'
+import appLoader from '@/components/use/app-loader.vue';
 
 import homeSidebar from "@views/home/home-sidebar.vue";
 import HomeContentBlock from "@views/home/home-content-block.vue";
@@ -54,12 +58,14 @@ export default {
     },
     created() {
 
+        this.load = true
+
         Promise.all([
             this.getSlides(),
             this.getShopItems()
         ])
         .catch((e) => console.log(e))
-        .finally(() => this.load = true)
+        .finally(() => this.load = false)
     },
     methods: {
         getFilterType(type) {
@@ -91,7 +97,8 @@ export default {
         appHomeSlider,
         homeSidebar,
         HomeContentBlock,
-        homeRecommendBlock
+        homeRecommendBlock,
+        appLoader
     },
 }
 
