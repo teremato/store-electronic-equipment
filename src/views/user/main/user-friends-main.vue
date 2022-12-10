@@ -1,10 +1,13 @@
 <template>
     <div class="user__page-friends">
 
-        <h3>
-            Друзья
-            <span>{{ friends.length }}</span>
-        </h3>
+        <app-link-title title="Друзья"
+            path="friends" >
+
+            <template #subtitle>
+                <span>{{ friends.length }}</span>
+            </template>
+        </app-link-title>
 
         <div v-if="friends.length" 
             class="user__page-friends-block" >
@@ -35,6 +38,7 @@
 
 <script>
 import appEmptyBlock from '@components/blocks/app-empty-block.vue';
+import appLinkTitle from '@/components/use/app-link-title.vue';
 
 export default {
     props: {
@@ -44,7 +48,8 @@ export default {
         }
     },
     components: {
-        appEmptyBlock
+        appEmptyBlock,
+        appLinkTitle
     }
 }
 </script>

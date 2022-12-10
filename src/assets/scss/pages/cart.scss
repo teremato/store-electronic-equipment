@@ -1,0 +1,25 @@
+.cart__page {
+    width: $default_user_container;
+    
+    margin: 0 auto;
+    margin-top: $sp_20;
+
+    &-list {
+        @include flex-vertical;
+        gap: $sp_15;
+
+        margin: $sp_20 0;
+    }
+    &-bottom {
+        @include flex-default;
+        justify-content: flex-end;
+
+        padding-bottom: $sp_20;
+        border-bottom: 2px solid $black;
+
+        button { 
+            @include default-btn(20px, 5px);
+            margin-left: $sp_15;
+        }
+    }
+}

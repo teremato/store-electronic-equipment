@@ -7,7 +7,7 @@ import MediaModule from '@/store/modules/media-module';
 import PostsModule from '@store/modules/posts-module';
 import friendModule from '@store/modules/friend-module';
 import feedModule from '@store/modules/feed-module';
-
+import cartModule from '@store/modules/cart-module';
 
 const store = createStore({
     state: {
@@ -25,7 +25,8 @@ const store = createStore({
         MediaModule,
         PostsModule,
         friendModule,
-        feedModule
+        feedModule,
+        cartModule
     }
 })
 

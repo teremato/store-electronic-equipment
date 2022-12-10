@@ -14,4 +14,9 @@ export default [
         name: 'Страница товара',
         component: () => import('@views/shop-item/shop-item-screen'),
     },
+    {
+        path: '/cart',
+        name: 'Корзина',
+        component: () => import('@views/cart/cart-screen')
+    }
 ]

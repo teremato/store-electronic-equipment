@@ -77,7 +77,10 @@
             <div class="main-top-info-photos">
                 <div class="main-top-info-photos-header">
 
-                    <h3>Фотографии</h3>
+                    <app-link-title title="Фотографии"
+                        :isMain="false"
+                        path="photos" />
+                        
                     <button v-if="checkIsUserPage"
                         @click="openChangePhotoModal('media')" >
 
@@ -115,6 +118,7 @@
 <script>
 import appPhotoUploadModal from "@components/modals/app-photo-upload-modal.vue"
 import appEmptyBlock from "@components/blocks/app-empty-block.vue" 
+import AppLinkTitle from "@/components/use/app-link-title.vue";
 import { CHANGE_STATUS } from "@store/actions/user-actions";
 import { ADD_FRIEND } from "@store/actions/friends-actions";
 import { mapGetters } from 'vuex';
@@ -204,7 +208,8 @@ export default {
     },
     components: {
         appPhotoUploadModal,
-        appEmptyBlock
+        appEmptyBlock,
+        AppLinkTitle
     }
 }
 </script>

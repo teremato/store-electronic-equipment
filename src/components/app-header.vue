@@ -80,6 +80,7 @@ export default {
             ],
             authOption: [
                 { name: "Моя страница", icon: "person-circle", type: "user" },
+                { name: "Корзина", icon: "minecart-loaded", type: "cart" },
                 { name: "Выйти", icon: "box-arrow-in-left", type: "logout"}
             ],
 
@@ -130,6 +131,9 @@ export default {
                 case 'user':
                     this.$router.push('/user/' + this.userId)
                         break;
+                case 'cart':
+                    this.$router.push('/cart')
+                        break
                 case 'logout':
                     this.logout();
                         break;

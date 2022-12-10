@@ -1,7 +1,9 @@
 <template>
     <div class="user__page-list">
 
-        <h3>Лента</h3>
+        <app-link-title title="Лента" 
+            path="feed" />
+
         <app-reviews-field v-model="form.text"
             placeholder="Расскажите что нового..." 
             rows="7"
@@ -44,8 +46,10 @@
 <script>
 import appReviewsField from '@components/fields/app-reviews-field.vue'
 import appPostItem from '@components/blocks/app-post-item.vue'
+import appLinkTitle from '@/components/use/app-link-title.vue'
 import likesAndFavorites from '@mixins/likesAndFavorites'
 import { CREATE_POST } from '@store/actions/posts-actions'
+import { mapGetters } from 'vuex'
 
 export default {
     mixins: [likesAndFavorites],
@@ -98,9 +102,15 @@ export default {
             this.$emit("remove:post", event);
         }
     },
+    computed: {
+        ...mapGetters({
+            userId: "userId"
+        })
+    },
     components: {
         appReviewsField,
-        appPostItem
+        appPostItem,
+        appLinkTitle
     },
 }
 </script>

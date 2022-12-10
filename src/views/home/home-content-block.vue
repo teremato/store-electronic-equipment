@@ -15,7 +15,8 @@
             :class="{'active-block': changeFilter}" >
 
             <template v-for="(item, index) in data" :key="index">
-                <app-shop-item-block :item="item"/>
+                <app-shop-item-block :item="item"
+                    @cart:add="addToCart" />
             </template>
 
         </div>
@@ -27,6 +28,7 @@
 <script>
 
 import AppShopItemBlock from "@components/blocks/app-shop-item-block.vue";
+import { ADD_TO_CART } from "@/store/actions/cart-actions";
 
 export default  {
     name: "home-content-block",
@@ -55,6 +57,19 @@ export default  {
         getFilter(type) {
             this.$emit('getFilter', type)
         },
+        async addToCart(event) {
+            await this.$store.dispatch(ADD_TO_CART, { id: event} )
+                .then(({ message }) => {
+
+                    this.$notify({
+                        type: "success",
+                        title: message
+                    })
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
     },
     computed: {
         activeFilter() {

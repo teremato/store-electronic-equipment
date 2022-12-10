@@ -10,7 +10,7 @@
             </div>
 
             <div class="shop-item-top-controller">
-                <button>
+                <button @click="addToCart">
                     {{ "Купить за" + ` ${game.price}Р` }}
                 </button>
             </div>
@@ -21,12 +21,29 @@
 </template>
 
 <script>
+import { ADD_TO_CART } from '@/store/actions/cart-actions'
+
 export default {
     name: "shop-item-top",
     props: {
         game: {
             type: Object,
             default: () => {}
+        }
+    },
+    methods: {
+        async addToCart() {
+            await this.$store.dispatch(ADD_TO_CART, { id: this.game.id} )
+                .then(({ message }) => {
+
+                    this.$notify({
+                        type: "success",
+                        title: message
+                    })
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
         }
     }
 }
