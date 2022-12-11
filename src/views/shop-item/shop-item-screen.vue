@@ -1,6 +1,8 @@
 <template>
     <div v-if="load" class="shop-item-page">
-        <shop-item-top :game="item"/>
+        <shop-item-top :game="item"
+            @game:like="changeLike"
+            @game:favorite="changeFavorite" />
         <div class="shop-item-page-content">
             <shop-item-album
                 :images="item.photos" />
@@ -44,6 +46,12 @@ export default {
                     this.item = game;
                 })
         },
+        changeLike() {
+            this.item.user_like = !this.item.user_like
+        },
+        changeFavorite() {
+            this.item.user_favorite = !this.item.user_favorite
+        }
     },
     components: {
         ShopItemContent,

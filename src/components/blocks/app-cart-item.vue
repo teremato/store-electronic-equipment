@@ -5,7 +5,9 @@
             <img :src="item.game.main_photo" alt>
             <div class="cart_item-right-container">
 
-                <h3>{{ item.game.title }}</h3>
+                <router-link :to="'/games/' + item.game.slug">
+                    <h3>{{ item.game.title }}</h3>
+                </router-link>
                 <div class="cart_item-right-container-controller">
                     <button @click="removeFromCart">
                         Убрать
@@ -19,7 +21,7 @@
         <div class="cart_item-left">
 
             <div class="cart_item-left-counter">
-                <button @click="incrementCount"
+                <button @click="decrementCount"
                     class="counter__field counter__btn" >
                     
                     <icon icon="dash-lg" />
@@ -27,7 +29,7 @@
                 <div class="counter__field counter__btn-count">
                     {{ item.count }}
                 </div>
-                <button @click="decrementCount"
+                <button @click="incrementCount"
                     class="counter__field counter__btn" >
 
                     <icon icon="plus-lg" />
@@ -56,7 +58,7 @@ export default {
             this.$emit("cart:wishlist", this.item.game.id)
         },
         incrementCount() {
-            this.$emit("cart:increment", this.item.game.id)
+            this.$emit("cart:increment", this.item.id)
         },
         decrementCount() {
             this.$emit("cart:decrement", this.item.id)
@@ -77,6 +79,7 @@ export default {
         @include box-shadow-default;
         justify-content: space-between;
         padding: $sp_15;
+        margin-bottom: $sp_20;
 
         &-right {
             display: flex;
@@ -86,6 +89,11 @@ export default {
             &-container {
                 @include flex-vertical;
                 justify-content: space-between;
+
+                h3 {
+                    transition: $transition;
+                    &:hover { color: $main_red; }
+                }
 
                 &-controller {
                     @include flex-default;

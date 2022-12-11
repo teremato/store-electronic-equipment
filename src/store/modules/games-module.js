@@ -20,6 +20,14 @@ export default {
         async [actions.SEARCH_GAME]({ commit }, params = {}) {
             return await $api.get('/search', { params: params })
                 .then(({ data }) => { return data })
+        },
+        async [actions.ADD_TO_FAVOROIRE]({ commit }, { id }) {
+            return await $api.post(`/games/favorite/${id}`)
+                .then(({ data }) => { return data })
+        },
+        async [actions.LIKE_TO_GAME]({ commit }, { id }) {
+            return await $api.post(`/games/like/${id}`)
+                .then(({ data }) => { return data })
         }
     }
 }
